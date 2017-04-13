@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="dz_pkhxx">
+    <sql id="getPkhList_sql_conn">
+        where status != '-1'
+        <if test="hzxm != null">
+            and hzxm like '%${hzxm}%'
+        </if>
+        <if test="hzzjhm != null">
+        	and hzzjhm like '%${hzzjhm}%'
+        </if>
+		<if test="nrjcsr != null">
+        	and nrjcsr like '%${nrjcsr}%'
+        </if>
+		<if test="hsx != null">
+			and hsx like '%${hsx}%' 
+		</if>
+		<if test="zyzpyy != null">
+			and zyzpyy like '%${zyzpyy}%' 
+		</if>
+		<if test="tpbs != null">
+			and tpbs like '%${tpbs}%' 
+		</if>
+		<if test="lxdh != null">
+			and lxdh like '%${lxdh}%' 
+		</if>
+		<if test="khyh != null">
+			and khyh like '%${khyh}%' 
+		</if>
+		<if test="yhzh != null">
+			and yhzh like '%${yhzh}%' 
+		</if>
+		<if test="sbbz != null">
+			and sbbz like '%${sbbz}%' 
+		</if>
+		<if test="sheng != null">
+			and sheng like '%${sheng}%' 
+		</if>
+		<if test="shi != null">
+			and shi like '%${shi}%' 
+		</if>
+		<if test="quxian != null">
+			and quxian like '%${quxian}%' 
+		</if>
+		<if test="xiangzhen != null">
+			and xiangzhen like '%${xiangzhen}%' 
+		</if>
+		<if test="xzc= != null">
+			and xzc= like '%${xzc=}%' 
+		</if>
+		<if test="zu != null">
+			and zu like '%${zu}%' 
+		</if>
+		<if test="lrr != null">
+			and lrr like '%${lrr}%' 
+		</if>
+		<if test="lrsj != null">
+			and lrsj like '%${lrsj}%' 
+		</if>
+		<if test="shr != null">
+			and shr like '%${shr}%' 
+		</if>
+		<if test="shsj != null">
+			and shsj like '%${shsj}%' 
+		</if>
+		<if test="keyword != null">
+			and (hzxm like '%${keyword}%' or hzzjhm like '%${keyword}%' or hsx like '%${keyword}%' or tpbs like '%${keyword}%' or lxdh like '%${keyword}%' or yhzh like '%${keyword}%' or xzc like '%${keyword}%' or lrr like '%${keyword}%' or shr like '%${keyword}%')
+		</if>
+    </sql>
+    <select id="getPkhCount" parameterType="Map" resultType="java.lang.String" >
+        select count(id) from dz_pkhxx
+        <include refid="getPkhList_sql_conn"/>
+    </select>
+
+    <insert id="insertPkh" parameterType="com.cicro.project.dz_pkhcx.PkhBean">
+		insert into dz_pkhxx(
+			id,
+			hzxm,
+			hzzjhm,
+			rs,
+			nrjcsr,
+			hsx,
+			zyzpyy,
+			tpbs,
+			lxdh,
+			khyh,
+			yhzh,
+			sbbz,
+			sheng,
+			shi,
+			quxian,
+			xiangzhen,
+			xzc,
+			zu,
+			lrr,
+			lrsj,
+			shr,
+			shsj,
+			addTime,
+			status
+		) values(
+			${id},
+			#{hzxm},
+			#{hzzjhm},
+			${rs},
+			${nrjcsr},
+			#{hsx},
+			#{zyzpyy},
+			#{tpbs},
+			#{lxdh},
+			#{khyh},
+			#{yhzh},
+			#{sbbz},
+			#{sheng},
+			#{shi},
+			#{quxian},
+			#{xiangzhen},
+			#{xzc},
+			#{zu},
+			#{lrr},
+			#{lrsj},
+			#{shr},
+			#{shsj},
+			#{addTime},
+			#{status}
+		)
+	</insert>
+
+    <update id="updatePkh"  parameterType="com.cicro.project.dz_pkhcx.PkhBean">
+		update dz_pkhxx set
+				hzxm = #{hzxm},
+				hzzjhm = #{hzzjhm},
+				rs = ${rs},
+				nrjcsr = ${nrjcsr},
+				hsx = #{hsx},
+				zyzpyy = #{zyzpyy},
+				tpbs = #{tpbs},
+				lxdh = #{lxdh},
+				khyh = #{khyh},
+				yhzh = #{yhzh},
+				sbbz = #{sbbz},
+				sheng = #{sheng},
+				shi = #{shi},
+				quxian = #{quxian},
+				xiangzhen = #{xiangzhen},
+				xzc = #{xzc},
+				zu = #{zu},
+				lrr = #{lrr},
+				lrsj = #{lrsj},
+				shr = #{shr},
+				shsj = #{shsj},
+				addTime = #{addTime},
+				status = #{status}
+		where id=${id}
+	</update>
+
+    <update id="deletePkh" parameterType="Map" >
+        update dz_pkhxx set status = '-1' where id in (#{id})
+    </update>
+
+    <select id="getAllPkh" parameterType="Map" resultType="com.cicro.project.dz_pkhcx.PkhBean" >
+        select id,hzxm,hzzjhm,rs,nrjcsr,hsx,zyzpyy,tpbs,lxdh,khyh,yhzh,sbbz,sheng,shi,quxian,xiangzhen,xzc,zu,lrr,lrsj,shr,shsj,addTime,status from dz_pkhxx <include refid="getPkhList_sql_conn"/>
+    </select>
+
+    <select id="getPkhList" parameterType="Map" resultType="com.cicro.project.dz_pkhcx.PkhBean" >
+        select * from (
+        select row_.*, rownum rownum_ from (
+        select id,hzxm,hzzjhm,rs,nrjcsr,hsx,zyzpyy,tpbs,lxdh,khyh,yhzh,sbbz,sheng,shi,quxian,xiangzhen,xzc,zu,lrr,lrsj,shr,shsj,addTime,status from dz_pkhxx <include refid="getPkhList_sql_conn"/>
+        order by ${orderby}
+        <![CDATA[
+		        ) row_ where rownum <=#{page_size,,jdbcType=INTEGER}+#{start_num,,jdbcType=INTEGER}       
+	    	) where rownum_ >=#{start_num,,jdbcType=INTEGER} + 1
+	    ]]>	
+    </select>
+
+    <select id="getPkhList_mysql" parameterType="Map" resultType="com.cicro.project.dz_pkhcx.PkhBean" >
+        select id,hzxm,hzzjhm,rs,nrjcsr,hsx,zyzpyy,tpbs,lxdh,khyh,yhzh,sbbz,sheng,shi,quxian,xiangzhen,xzc,zu,lrr,lrsj,shr,shsj,addTime,status from dz_pkhxx <include refid="getPkhList_sql_conn"/>
+        order by ${orderby} limit #{start_num,,jdbcType=INTEGER},#{page_size,,jdbcType=INTEGER}	
+    </select>
+
+    <select id="getPkhList_mssql" parameterType="Map" resultType="com.cicro.project.dz_pkhcx.PkhBean" >
+        select top #{page_size} id,hzxm,hzzjhm,rs,nrjcsr,hsx,zyzpyy,tpbs,lxdh,khyh,yhzh,sbbz,sheng,shi,quxian,xiangzhen,xzc,zu,lrr,lrsj,shr,shsj,addTime,status
+        from dz_pkhxx
+        <include refid="getPkhList_sql_conn"/>
+        and id not in
+        (select top ${start_num} id
+        from dz_pkhxx
+        <include refid="getPkhList_sql_conn"/>
+        order by ${orderby} )
+        order by ${orderby}
+    </select>
+    
+	<select id="getPkhBean"  parameterType="Map" resultType="com.cicro.project.dz_pkhcx.PkhBean" >
+		select id,hzxm,hzzjhm,rs,nrjcsr,hsx,zyzpyy,tpbs,lxdh,khyh,yhzh,sbbz,sheng,shi,quxian,xiangzhen,xzc,zu,lrr,lrsj,shr,shsj,addTime,status from dz_pkhxx where id=${id}
+	</select>
+
+</mapper>

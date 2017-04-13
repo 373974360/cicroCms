@@ -1,0 +1,32 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head> 
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
+	<title>测试</title> 
+	<script type="text/javascript" src="http://localhost:8080/Jsonrpc/sys/js/jquery-1.4.2.min.js"></script>
+	<script src="http://localhost:8080/Jsonrpc/sys/js/java.js"></script>
+	<script src="http://localhost:8080/Jsonrpc/sys/js/jsonrpc.js"></script>
+	<script src="http://localhost:8080/Jsonrpc/sys/js/jquery.c.js"></script>
+	<script src="http://localhost:8080/Jsonrpc/sys/js/common.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+var letterRPC = jsonrpc.LetterRPC;
+
+function doTest(){
+	var text = letterRPC.getWords();
+	alert(text);
+}
+
+<!-- 	
+//加载文件后执行
+$(function(){
+      
+});
+//-->
+</SCRIPT>	
+</head> 
+<body topmargin="0" leftmargin="0" style="background: #ECF4FC;"> 
+     <input type="button" id="button1" value="测试" onclick="doTest()"/>
+</body> 
+
+</html> 
+

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" 
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="project">
+	<select id="getMemberActionCount" parameterType="Map"
+		resultType="java.lang.String">
+		select count(id) from dz_member_action
+		<where>
+			<if test="memberId != null">and memberId = #{memberId}</if>
+			<if test="infoId != null">and infoId = #{infoId}</if>
+			<if test="ipAddr != null">and ipAddr = #{ipAddr}</if>
+			<if test="byzd != null">and byzd = #{byzd}</if>
+			<if test="byzd1 != null">and byzd1 = #{byzd1}</if>
+			<if test="byzd2 != null">and byzd2 = #{byzd2}</if>
+		</where>
+
+	</select>
+
+	<select id="getMemberActionList" parameterType="Map"
+		resultType="com.cicro.project.dz_memberAction.MemberActionBean">
+		select * from (
+		select row_.*, rownum rownum_ from (
+		select id,memberId,infoId,infoUrl,clickTime,ipAddr,byzd,byzd1,byzd2 from
+		dz_member_action 
+		<where>
+			<if test="memberId != null">and memberId = #{memberId}</if>
+			<if test="infoId != null">and infoId = #{infoId}</if>
+			<if test="ipAddr != null">and ipAddr = #{ipAddr}</if>
+			<if test="byzd != null">and byzd = #{byzd}</if>
+			<if test="byzd1 != null">and byzd1 = #{byzd1}</if>
+			<if test="byzd2 != null">and byzd2 = #{byzd2}</if>
+		</where>
+		order by ${orderby}	
+		<![CDATA[
+		        ) row_ where rownum <=#{page_size,,jdbcType=INTEGER}+#{start_num,,jdbcType=INTEGER}       
+	    	) where rownum_ >=#{start_num,,jdbcType=INTEGER} + 1
+	    ]]>
+	</select>
+
+	<select id="getMemberActionList_mysql" parameterType="Map"
+		resultType="com.cicro.project.dz_memberAction.MemberActionBean">
+		select id,memberId,infoId,infoUrl,clickTime,ipAddr,byzd,byzd1,byzd2
+		from dz_member_action 
+		<where>
+			<if test="memberId != null">and memberId = #{memberId}</if>
+			<if test="infoId != null">and infoId = #{infoId}</if>
+			<if test="ipAddr != null">and ipAddr = #{ipAddr}</if>
+			<if test="byzd != null">and byzd = #{byzd}</if>
+			<if test="byzd1 != null">and byzd1 = #{byzd1}</if>
+			<if test="byzd2 != null">and byzd2 = #{byzd2}</if>
+		</where>
+		order by ${orderby} limit
+		#{start_num,,jdbcType=INTEGER},#{page_size,,jdbcType=INTEGER}
+
+	</select>
+
+	<select id="getMemberActionBean" parameterType="Map"
+		resultType="com.cicro.project.dz_memberAction.MemberActionBean">
+		select
+		id,memberId,infoId,infoUrl,clickTime,ipAddr,byzd,byzd1,byzd2 from
+		dz_member_action where id = #{id}
+	</select>
+
+	<insert id="insertMemberAction" parameterType="com.cicro.project.dz_memberAction.MemberActionBean">
+		insert into
+		dz_member_action(id,memberId,infoId,infoUrl,clickTime,ipAddr,byzd,byzd1,byzd2)
+		values(#{id},#{memberId},#{infoId},#{infoUrl},#{clickTime},#{ipAddr},#{byzd},#{byzd1},#{byzd2})
+	</insert>
+
+</mapper>

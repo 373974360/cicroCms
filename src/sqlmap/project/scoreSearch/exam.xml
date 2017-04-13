@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="salarySearch">
+    <sql id="getExam_sql_conn">
+        where status != '-1'
+        <if test="name != null">
+            and name = #{name}
+        </if>
+        <if test="status != null">
+            and status = #{status}
+        </if>
+    </sql>
+
+    <insert id="insertExam" parameterType="com.cicro.project.scoreSearch.ExamBean">
+        insert into dz_exam(
+        id,
+        name,
+        description,
+        addTime,
+        updateTime,
+        status
+        ) values(
+        #{id},
+        #{name},
+        #{description},
+        #{addTime},
+        #{updateTime},
+        #{status}
+        )
+    </insert>
+
+    <update id="updateExam"  parameterType="com.cicro.project.scoreSearch.ExamBean">
+        update dz_exam set
+        name=#{name},
+        description=#{description},
+        updateTime=#{updateTime},
+        status=#{status}
+        where id=#{id}
+    </update>
+
+    <!-- 根据条件删除Excel表头信息 -->
+    <update id="deleteExam" parameterType="Map" >
+        update dz_exam set status = '-1' where id in (${ids})
+    </update>
+
+    <select id="getAllExamList" resultType="com.cicro.project.scoreSearch.ExamBean" >
+        select id,name,description,addTime,updateTime,status from dz_exam where status != '-1' order by id desc
+    </select>
+
+	<select id="getExamCount" resultType="java.lang.String" >
+        select count(*) from dz_exam <include refid="getExam_sql_conn"/> order by id desc
+    </select>
+    
+    <select id="getExamList" parameterType="Map" resultType="com.cicro.project.scoreSearch.ExamBean" >	 
+		select * from (
+		       select row_.*, rownum rownum_ from (       
+		            select id,name,description,addTime,updateTime,status from dz_exam <include refid="getExam_sql_conn"/>
+		           order by id desc
+		 <![CDATA[
+		        ) row_ where rownum <=#{page_size,,jdbcType=INTEGER}+#{start_num,,jdbcType=INTEGER}       
+	    	) where rownum_ >=#{start_num,,jdbcType=INTEGER} + 1
+	    ]]>	
+	</select>
+	
+	<select id="getExamList_mysql" parameterType="Map" resultType="com.cicro.project.scoreSearch.ExamBean" >	
+		select id,name,description,addTime,updateTime,status from dz_exam <include refid="getExam_sql_conn"/>
+		           order by id desc limit #{start_num,,jdbcType=INTEGER},#{page_size,,jdbcType=INTEGER}	
+	</select>
+	
+	<select id="getExamList_mssql" parameterType="Map" resultType="com.cicro.project.scoreSearch.ExamBean" >
+		select top ${page_size} id,name,description,addTime,updateTime,status from dz_exam 
+			  <include refid="getExam_sql_conn"/>
+				and ci.info_id not in
+				  (select top ${start_num} id
+					  from dz_exam 
+					 <include refid="getExam_sql_conn"/>
+					 order by id desc )
+			order by id desc
+	</select>
+
+    <select id="getExamBean"  parameterType="Map" resultType="com.cicro.project.scoreSearch.ExamBean" >
+        select id,name,description,addTime,updateTime,status from dz_exam where id=#{id}
+    </select>
+
+</mapper>

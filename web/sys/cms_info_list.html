@@ -1,0 +1,1103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>时光门户管理系统</title>
+
+
+<link type="text/css" rel="stylesheet" href="styles/main.css" />
+<link type="text/css" rel="stylesheet" href="styles/sub.css" />
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/sysUI.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	Init_InfoTable("infoList1");
+	Init_InfoTable("infoList2");
+	Init_InfoTable("infoList3");
+	initButtomStyle();
+	init_FromTabsStyle();
+	if($.browser.msie&&$.browser.version=="6.0"&&$("html")[0].scrollHeight>$("html").height()) $("html").css("overflowY","scroll"); 
+});
+
+</script>
+</head>
+
+<body>
+
+<div>
+<table class="table_option" border="0" cellpadding="0" cellspacing="0" >
+	<tr>
+		<td align="left" class="fromTabs" width="130">
+			<select id="pageGoNum" name="pageSize" class="input_select width60"  >
+				<option value="" selected="selected"  >全部</option>
+				<option value="">文章</option>
+				<option value="">图组</option>
+                <option value="">链接</option>
+                <option value="">视频</option>
+			</select>
+			<select id="searchFields" class="input_select width60">
+				<option selected="selected" value="">日期</option>
+				<option value="">今日</option>
+				<option value="">昨日</option>
+                <option value="">一周内</option>
+				<option value="">一月内</option>
+			</select>
+		</td>
+		<td align="left" class="fromTabs" width="80">
+			<ul class="infoadd_area">
+				<li class="x_add" onclick="">
+					<ul class="MUL">
+						<li class="ico_document"  onclick="">添文章</li>
+						<li class="ico_pictures"  onclick="">添图组</li>
+						<li class="ico_link"  onclick="">添链接</li>
+						<li class="ico_film"  onclick="">添视频</li>
+					</ul>
+				</li>
+			</ul>
+				
+		<span class="blank3"></span>
+		</td>
+		<td align="left" width="">
+			<ul class="fromTabs">
+				<li class="list_tab list_tab_cur">
+					<div class="tab_left">
+						<div class="tab_right">已发</div>
+					</div>
+				</li>
+				<li class="list_tab">
+					<div class="tab_left">
+						<div class="tab_right">待发</div>
+					</div>
+				</li>
+				<li class="list_tab">
+					<div class="tab_left">
+						<div class="tab_right">已撤</div>
+					</div>
+				</li>
+                <li class="list_tab">
+					<div class="tab_left">
+						<div class="tab_right">待审</div>
+					</div>
+				</li>
+                <li class="list_tab">
+					<div class="tab_left">
+						<div class="tab_right">退稿</div>
+					</div>
+				</li>
+                <li class="list_tab">
+					<div class="tab_left">
+						<div class="tab_right">草稿</div>
+					</div>
+				</li>
+                <li class="list_tab">
+					<div class="tab_left">
+						<div class="tab_right">回收站</div>
+					</div>
+				</li>
+             </ul>
+		</td>
+		<td align="right" valign="middle" class="fromTabs">
+			
+			<input id="searchkey" type="text" class="input_text" style="width:80px;" value=""  /><input id="btnSearch" type="button" class="btn" value="搜索" /><a href="#">高级</a>
+			<select id="orderByFields" class="input_select">
+				<option selected="selected" value="">时间倒序</option>
+				<option value="">时间正序</option>
+				<option value="">权重倒序</option>
+				<option value="">权重正序</option>
+				<option value="">点击量倒序</option>
+				<option value="">点击量正序</option>
+			</select>
+			<span class="blank3"></span>
+		</td>
+	</tr>
+</table>
+</div>
+<span class="blank3"></span>
+<div class="infoListTable" id="listTable_0">
+<table id="infoList1" class="table_border odd_even_list"  border="0" cellpadding="0" cellspacing="0">
+	<thead>
+		<tr>
+			<td width="25" align="center"><input id="selectAll" name="selectAll" type="checkbox" onclick="" /></td>
+			<td align="left">标题</td>
+			<td width="100" align="center">管理操作</td>
+			<td width="45" align="center">点击量</td>
+			<td width="45" align="center">权重</td>
+			<td width="80" align="center">发布人</td>
+			<td width="110" align="center">发布时间</td>
+		</tr>
+	</thead>
+	<tbody>			
+		<tr>
+			<td align="center"><input id="4" name="" class="inputHeadCol" type="checkbox" /></td>
+			<td align="left"><ul class="optUL">
+					<li class="ico_document"></li>					
+				</ul> <a href="javascript:void(0);" target="_self">[国内新闻] 重庆部分学校行贿买农民工培训指标以获暴利 </a><img src="images/page_pic.png" /></td>
+			<td align="center"><ul class="optUL">					
+					<li class="ico_view"></li>
+					<li class="ico_edit"></li>
+                    <li class="ico_cancel"></li>
+					<li class="ico_delete" ></li>
+				</ul>
+            
+            </td>
+			<td align="center">990</td>
+			<td align="center">90</td>
+			<td align="center">刘德华</td>
+			<td align="center">2010-12-05 01:58</td>
+		</tr>
+        <tr>
+			<td align="center"><input id="4" name="" class="inputHeadCol" type="checkbox" /></td>
+			<td align="left"><ul class="optUL">
+					<li class="ico_pictures"></li>					
+				</ul> <a href="javascript:void(0);" target="_self">重庆部分学校行贿买农民工培训指标以获暴利</a></td>
+			<td align="center"><ul class="optUL">					
+					<li class="ico_view"></li>
+					<li class="ico_edit"></li>
+                    <li class="ico_cancel"></li>
+					<li class="ico_delete" ></li>
+				</ul>
+            
+            </td>
+			<td align="center">990</td>
+			<td align="center">90</td>
+			<td align="center">刘德华</td>
+			<td align="center">2010-12-05 01:58</td>
+		</tr>
+        <tr>
+			<td align="center"><input id="4" name="" class="inputHeadCol" type="checkbox" /></td>
+			<td align="left"><ul class="optUL">
+					<li class="ico_film"></li>					
+				</ul> <a href="javascript:void(0);" target="_self">重庆部分学校行贿买农民工培训指标以获暴利</a></td>
+			<td align="center"><ul class="optUL">					
+					<li class="ico_view"></li>
+					<li class="ico_edit"></li>
+                    <li class="ico_cancel"></li>
+					<li class="ico_delete" ></li>
+				</ul>
+            
+            </td>
+			<td align="center">990</td>
+			<td align="center">90</td>
+			<td align="center">刘德华</td>
+			<td align="center">2010-12-05 01:58</td>
+		</tr>
+        <tr>
+			<td align="center"><input id="4" name="" class="inputHeadCol" type="checkbox" /></td>
+			<td align="left"><ul class="optUL">
+					<li class="ico_link"></li>					
+				</ul> <a href="javascript:void(0);" target="_self">重庆部分学校行贿买农民工培训指标以获暴利</a></td>
+			<td align="center"><ul class="optUL">					
+					<li class="ico_view"></li>
+					<li class="ico_edit"></li>
+                    <li class="ico_cancel"></li>
+					<li class="ico_delete" ></li>
+				</ul>
+            
+            </td>
+			<td align="center">990</td>
+			<td align="center">90</td>
+			<td align="center">刘德华</td>
+			<td align="center">2010-12-05 01:58</td>
+		</tr>
+		<tr>
+			<td align="center"><input id="5" name="" class="inputHeadCol" type="checkbox" /></td>
+			<td align="left"><a href="javascript:void(0);" target="_self">重庆部分学校行贿买农民工培训指标以获暴利</a></td>
+			<td align="center"><ul class="optUL">					
+					<li class="ico_view"></li>
+					<li class="ico_edit"></li>
+                    <li class="ico_cancel"></li>
+					<li class="ico_delete" ></li>
+				</ul>
+            
+            </td>
+			<td align="center">990</td>
+			<td align="center">90</td>
+			<td align="center">刘德华</td>
+			<td align="center">2010-12-05 01:58</td>
+		</tr>
+		
+		
+		
+	</tbody>
+	<tfoot>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+	</tfoot>
+</table>
+<table class="table_pageing" border="0" cellpadding="0" cellspacing="0">
+	<tr>
+		<td align="left" valign="middle">&nbsp;</td>
+		<td id="pageingArea" align="right" valign="middle">
+			共&nbsp;<span id="infoCount">836</span>&nbsp;条记录
+			<a href="javascript:void(0);">首页</a>
+			<a href="javascript:void(0);">上一页</a>
+			<a href="javascript:void(0);">下一页</a>
+			<a href="javascript:void(0);">尾页</a>
+			每页
+			<select id="pageSize" name="pageSize" class="input_select" >
+				<option value="15" selected="selected">15</option>
+				<option value="20">20</option>
+				<option value="25">25</option>
+				<option value="30">30</option>
+				<option value="35">35</option>
+				<option value="40">40</option>
+				<option value="45">45</option>
+				<option value="50">50</option>
+			</select>
+			条记录
+			转到第
+			<select id="pageGoNum" name="pageSize" class="input_select" >
+				<option value="15" selected="selected">1/36</option>
+				<option value="20">2/36</option>
+				<option value="25">3/36</option>
+				<option value="30">4/36</option>
+				<option value="35">5/36</option>
+				<option value="40">6/36</option>
+				<option value="45">7/36</option>
+				<option value="50">8/36</option>
+				<option value="50">21/36</option>
+				<option value="50">22/136</option>
+				<option value="50">123/136</option>
+			</select>
+			<span id="pageCur" class="hidden">1</span>
+			页
+			
+			
+		<!--共 890 条记录 页次：1/38 页 首页 上一页 下一页 尾页 每页（）条记录 转到第（）页-->
+		</td>
+	</tr>
+</table>
+
+<table class="table_option" border="0" cellpadding="0" cellspacing="0">
+	<tr>
+		<td align="left" valign="middle">
+			<input id="btn1" name="btn1" type="button" onclick="javascript:void(0);" value="获取" />
+			<input id="btn2" name="btn2" type="button" onclick="javascript:void(0);" value="推送" />
+			<input id="btn3" name="btn3" type="button" onclick="javascript:void(0);" value="移动" />
+			<input id="btn4" name="btn4" type="button" onclick="javascript:void(0);" value="删除" />
+			<input id="btn5" name="btn5" type="button" onclick="javascript:void(0);" value="撤销" />
+			<input id="btn6" name="btn6" type="button" onclick="javascript:void(0);" value="生成静态页" />
+		</td>
+	</tr>
+</table>
+</div>
+
+
+<div class="infoListTable hidden" id="listTable_1">
+<table id="infoList2" class="table_border odd_even_list" border="0" cellpadding="0" cellspacing="0">
+	<thead>
+		<tr>
+			<td width="25" align="center"><input id="selectAll" name="selectAll" type="checkbox" onclick="" /></td>
+			<td align="left">标题</td>
+			<td width="80" align="center">管理操作</td>			
+			<td width="45" align="center">权重</td>
+			<td width="80" align="center">审核人</td>
+			<td width="110" align="center">审核时间</td>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td align="center"><input id="1" name="" class="inputHeadCol" type="checkbox" /></td>
+			<td align="left"><ul class="optUL">
+					<li class="ico_link"></li>					
+				</ul> <a href="javascript:void(0);" target="_self">[国内新闻] 信询问新闻XXXX</a></td>
+			<td align="center"><ul class="optUL">					
+					<li class="ico_publish"></li>
+					<li class="ico_edit"></li>
+					<li class="ico_delete" ></li>
+				</ul></td>			
+			<td align="center">90</td>
+			<td align="center">刘德华</td>
+			<td align="center">2010-12-05 01:58</td>
+		</tr>
+		<tr>
+			<td align="center"><input id="1" name="" class="inputHeadCol" type="checkbox" /></td>
+			<td align="left"><ul class="optUL">
+					<li class="ico_link"></li>					
+				</ul> <a href="javascript:void(0);" target="_self">[国内新闻] 信询问新闻XXXX</a></td>
+			<td align="center"><ul class="optUL">					
+					<li class="ico_publish"></li>
+					<li class="ico_edit"></li>
+					<li class="ico_delete" ></li>
+				</ul></td>			
+			<td align="center">90</td>
+			<td align="center">刘德华</td>
+			<td align="center">2010-12-05 01:58</td>
+		</tr>
+        <tr>
+			<td align="center"><input id="1" name="" class="inputHeadCol" type="checkbox" /></td>
+			<td align="left"><ul class="optUL">
+					<li class="ico_link"></li>					
+				</ul> <a href="javascript:void(0);" target="_self">[国内新闻] 信询问新闻XXXX</a></td>
+			<td align="center"><ul class="optUL">					
+					<li class="ico_publish"></li>
+					<li class="ico_edit"></li>
+					<li class="ico_delete" ></li>
+				</ul></td>			
+			<td align="center">90</td>
+			<td align="center">刘德华</td>
+			<td align="center">2010-12-05 01:58</td>
+		</tr>
+        <tr>
+			<td align="center"><input id="1" name="" class="inputHeadCol" type="checkbox" /></td>
+			<td align="left"><ul class="optUL">
+					<li class="ico_link"></li>					
+				</ul> <a href="javascript:void(0);" target="_self">[国内新闻] 信询问新闻XXXX</a></td>
+			<td align="center"><ul class="optUL">					
+					<li class="ico_publish"></li>
+					<li class="ico_edit"></li>
+					<li class="ico_delete" ></li>
+				</ul></td>			
+			<td align="center">90</td>
+			<td align="center">刘德华</td>
+			<td align="center">2010-12-05 01:58</td>
+		</tr>
+		
+		
+		
+	</tbody>
+	<tfoot>
+		<tr>
+			<td></td>			
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+	</tfoot>
+</table>
+<table class="table_pageing" border="0" cellpadding="0" cellspacing="0">
+	<tr>
+		<td align="left" valign="middle">&nbsp;</td>
+		<td id="pageingArea" align="right" valign="middle">
+			共&nbsp;<span id="infoCount">836</span>&nbsp;条记录
+			<a href="javascript:void(0);">首页</a>
+			<a href="javascript:void(0);">上一页</a>
+			<a href="javascript:void(0);">下一页</a>
+			<a href="javascript:void(0);">尾页</a>
+			每页
+			<select id="pageSize" name="pageSize" class="input_select" >
+				<option value="15" selected="selected">15</option>
+				<option value="20">20</option>
+				<option value="25">25</option>
+				<option value="30">30</option>
+				<option value="35">35</option>
+				<option value="40">40</option>
+				<option value="45">45</option>
+				<option value="50">50</option>
+			</select>
+			条记录
+			转到第
+			<select id="pageGoNum" name="pageSize" class="input_select" >
+				<option value="15" selected="selected">1/36</option>
+				<option value="20">2/36</option>
+				<option value="25">3/36</option>
+				<option value="30">4/36</option>
+				<option value="35">5/36</option>
+				<option value="40">6/36</option>
+				<option value="45">7/36</option>
+				<option value="50">8/36</option>
+				<option value="50">21/36</option>
+				<option value="50">22/136</option>
+				<option value="50">123/136</option>
+			</select>
+			<span id="pageCur" class="hidden">1</span>
+			页
+			
+			
+		<!--共 890 条记录 页次：1/38 页 首页 上一页 下一页 尾页 每页（）条记录 转到第（）页-->
+		</td>
+	</tr>
+</table>
+
+<table class="table_option" border="0" cellpadding="0" cellspacing="0">
+	<tr>
+		<td align="left" valign="middle">
+			<input id="btn1" name="btn1" type="button" onclick="javascript:void(0);" value="发布" />
+			<input id="btn2" name="btn2" type="button" onclick="javascript:void(0);" value="获取" />
+			<input id="btn3" name="btn3" type="button" onclick="javascript:void(0);" value="推送" />
+			<input id="btn4" name="btn4" type="button" onclick="javascript:void(0);" value="移动" />
+			<input id="btn5" name="btn5" type="button" onclick="javascript:void(0);" value="删除" />			
+		</td>
+	</tr>
+</table>
+</div>
+
+<div class="infoListTable hidden" id="listTable_2">
+<table id="infoList3" class="table_border odd_even_list" border="0" cellpadding="0" cellspacing="0">
+	<thead>
+		<tr>
+			<td width="25" align="center"><input id="selectAll" name="selectAll" type="checkbox" onclick="" /></td>
+			<td align="left">标题</td>
+			<td width="80" align="center">管理操作</td>			
+			<td width="45" align="center">权重</td>
+			<td width="80" align="center">撤销人</td>
+			<td width="110" align="center">撤销时间</td>
+		</tr>
+	</thead>
+	<tbody>
+		 <tr>
+			<td align="center"><input id="1" name="" class="inputHeadCol" type="checkbox" /></td>
+			<td align="left"><ul class="optUL">
+					<li class="ico_document"></li>					
+				</ul> <a href="javascript:void(0);" target="_self">[国内新闻] 信询问新闻XXXX</a></td>
+			<td align="center"><ul class="optUL">					
+					<li class="ico_publish"></li>
+					<li class="ico_edit"></li>
+					<li class="ico_delete" ></li>
+				</ul></td>			
+			<td align="center">90</td>
+			<td align="center">刘德华</td>
+			<td align="center">2010-12-05 01:58</td>
+		</tr>
+		 <tr>
+			<td align="center"><input id="1" name="" class="inputHeadCol" type="checkbox" /></td>
+			<td align="left"><ul class="optUL">
+					<li class="ico_document"></li>					
+				</ul> <a href="javascript:void(0);" target="_self">[国内新闻] 信询问新闻XXXX</a></td>
+			<td align="center"><ul class="optUL">					
+					<li class="ico_publish"></li>
+					<li class="ico_edit"></li>
+					<li class="ico_delete" ></li>
+				</ul></td>			
+			<td align="center">90</td>
+			<td align="center">刘德华</td>
+			<td align="center">2010-12-05 01:58</td>
+		</tr>
+         <tr>
+			<td align="center"><input id="1" name="" class="inputHeadCol" type="checkbox" /></td>
+			<td align="left"><ul class="optUL">
+					<li class="ico_document"></li>					
+				</ul> <a href="javascript:void(0);" target="_self">[国内新闻] 信询问新闻XXXX</a></td>
+			<td align="center"><ul class="optUL">					
+					<li class="ico_publish"></li>
+					<li class="ico_edit"></li>
+					<li class="ico_delete" ></li>
+				</ul></td>			
+			<td align="center">90</td>
+			<td align="center">刘德华</td>
+			<td align="center">2010-12-05 01:58</td>
+		</tr>
+		
+		
+	</tbody>
+	<tfoot>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+	</tfoot>
+</table>
+<table class="table_pageing" border="0" cellpadding="0" cellspacing="0">
+	<tr>
+		<td align="left" valign="middle">&nbsp;</td>
+		<td id="pageingArea" align="right" valign="middle">
+			共&nbsp;<span id="infoCount">836</span>&nbsp;条记录
+			<a href="javascript:void(0);">首页</a>
+			<a href="javascript:void(0);">上一页</a>
+			<a href="javascript:void(0);">下一页</a>
+			<a href="javascript:void(0);">尾页</a>
+			每页
+			<select id="pageSize" name="pageSize" class="input_select" >
+				<option value="15" selected="selected">15</option>
+				<option value="20">20</option>
+				<option value="25">25</option>
+				<option value="30">30</option>
+				<option value="35">35</option>
+				<option value="40">40</option>
+				<option value="45">45</option>
+				<option value="50">50</option>
+			</select>
+			条记录
+			转到第
+			<select id="pageGoNum" name="pageSize" class="input_select" >
+				<option value="15" selected="selected">1/36</option>
+				<option value="20">2/36</option>
+				<option value="25">3/36</option>
+				<option value="30">4/36</option>
+				<option value="35">5/36</option>
+				<option value="40">6/36</option>
+				<option value="45">7/36</option>
+				<option value="50">8/36</option>
+				<option value="50">21/36</option>
+				<option value="50">22/136</option>
+				<option value="50">123/136</option>
+			</select>
+			<span id="pageCur" class="hidden">1</span>
+			页
+			
+			
+		<!--共 890 条记录 页次：1/38 页 首页 上一页 下一页 尾页 每页（）条记录 转到第（）页-->
+		</td>
+	</tr>
+</table>
+
+<table class="table_option" border="0" cellpadding="0" cellspacing="0">
+	<tr>
+		<td align="left" valign="middle">
+			<input id="btn1" name="btn1" type="button" onclick="javascript:void(0);" value="发布" />
+			<input id="btn2" name="btn2" type="button" onclick="javascript:void(0);" value="推送" />
+			<input id="btn3" name="btn3" type="button" onclick="javascript:void(0);" value="移动" />
+            <input id="btn3" name="btn3" type="button" onclick="javascript:void(0);" value="删除" />
+		</td>
+	</tr>
+</table>
+</div>
+
+
+<div class="infoListTable hidden" id="listTable_3">
+<table id="infoList3" class="table_border odd_even_list" border="0" cellpadding="0" cellspacing="0">
+	<thead>
+		<tr>
+			<td width="25" align="center"><input id="selectAll" name="selectAll" type="checkbox" onclick="" /></td>
+			<td align="left">标题</td>
+			<td width="80" align="center">管理操作</td>			
+			<td width="45" align="center">权重</td>
+			<td width="80" align="center">送审人</td>
+			<td width="110" align="center">送审时间</td>
+		</tr>
+	</thead>
+	<tbody>
+		 <tr>
+			<td align="center"><input id="1" name="" class="inputHeadCol" type="checkbox" /></td>
+			<td align="left"><ul class="optUL">
+					<li class="ico_document"></li>					
+				</ul> <a href="javascript:void(0);" target="_self">[国内新闻] 信询问新闻XXXX</a></td>
+			<td align="center"><ul class="optUL">					
+					<li class="ico_pass"></li>
+					<li class="ico_nopass"></li>
+					<li class="ico_delete" ></li>
+				</ul></td>			
+			<td align="center">90</td>
+			<td align="center">送审人</td>
+			<td align="center">2010-12-05 01:58</td>
+		</tr>
+		  <tr>
+			<td align="center"><input id="1" name="" class="inputHeadCol" type="checkbox" /></td>
+			<td align="left"><ul class="optUL">
+					<li class="ico_document"></li>					
+				</ul> <a href="javascript:void(0);" target="_self">[国内新闻] 信询问新闻XXXX</a></td>
+			<td align="center"><ul class="optUL">					
+					<li class="ico_pass"></li>
+					<li class="ico_nopass"></li>
+					<li class="ico_delete" ></li>
+				</ul></td>			
+			<td align="center">90</td>
+			<td align="center">送审人</td>
+			<td align="center">2010-12-05 01:58</td>
+		</tr>
+         <tr>
+			<td align="center"><input id="1" name="" class="inputHeadCol" type="checkbox" /></td>
+			<td align="left"><ul class="optUL">
+					<li class="ico_document"></li>					
+				</ul> <a href="javascript:void(0);" target="_self">[国内新闻] 信询问新闻XXXX</a></td>
+			<td align="center"><ul class="optUL">					
+					<li class="ico_pass"></li>
+					<li class="ico_nopass"></li>
+					<li class="ico_delete" ></li>
+				</ul></td>			
+			<td align="center">90</td>
+			<td align="center">送审人</td>
+			<td align="center">2010-12-05 01:58</td>
+		</tr>
+         <tr>
+			<td align="center"><input id="1" name="" class="inputHeadCol" type="checkbox" /></td>
+			<td align="left"><ul class="optUL">
+					<li class="ico_document"></li>					
+				</ul> <a href="javascript:void(0);" target="_self">[国内新闻] 信询问新闻XXXX</a></td>
+			<td align="center"><ul class="optUL">					
+					<li class="ico_pass"></li>
+					<li class="ico_nopass"></li>
+					<li class="ico_delete" ></li>
+				</ul></td>			
+			<td align="center">90</td>
+			<td align="center">送审人</td>
+			<td align="center">2010-12-05 01:58</td>
+		</tr>
+		
+	</tbody>
+	<tfoot>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+	</tfoot>
+</table>
+<table class="table_pageing" border="0" cellpadding="0" cellspacing="0">
+	<tr>
+		<td align="left" valign="middle">&nbsp;</td>
+		<td id="pageingArea" align="right" valign="middle">
+			共&nbsp;<span id="infoCount">836</span>&nbsp;条记录
+			<a href="javascript:void(0);">首页</a>
+			<a href="javascript:void(0);">上一页</a>
+			<a href="javascript:void(0);">下一页</a>
+			<a href="javascript:void(0);">尾页</a>
+			每页
+			<select id="pageSize" name="pageSize" class="input_select" >
+				<option value="15" selected="selected">15</option>
+				<option value="20">20</option>
+				<option value="25">25</option>
+				<option value="30">30</option>
+				<option value="35">35</option>
+				<option value="40">40</option>
+				<option value="45">45</option>
+				<option value="50">50</option>
+			</select>
+			条记录
+			转到第
+			<select id="pageGoNum" name="pageSize" class="input_select" >
+				<option value="15" selected="selected">1/36</option>
+				<option value="20">2/36</option>
+				<option value="25">3/36</option>
+				<option value="30">4/36</option>
+				<option value="35">5/36</option>
+				<option value="40">6/36</option>
+				<option value="45">7/36</option>
+				<option value="50">8/36</option>
+				<option value="50">21/36</option>
+				<option value="50">22/136</option>
+				<option value="50">123/136</option>
+			</select>
+			<span id="pageCur" class="hidden">1</span>
+			页
+			
+			
+		<!--共 890 条记录 页次：1/38 页 首页 上一页 下一页 尾页 每页（）条记录 转到第（）页-->
+		</td>
+	</tr>
+</table>
+
+<table class="table_option" border="0" cellpadding="0" cellspacing="0">
+	<tr>
+		<td align="left" valign="middle">
+			<input id="btn1" name="btn1" type="button" onclick="javascript:void(0);" value="通过" />
+			<input id="btn2" name="btn2" type="button" onclick="javascript:void(0);" value="退稿" />
+			<input id="btn3" name="btn3" type="button" onclick="javascript:void(0);" value="移动" />
+            <input id="btn3" name="btn3" type="button" onclick="javascript:void(0);" value="删除" />
+		</td>
+	</tr>
+</table>
+</div>
+
+
+<div class="infoListTable hidden" id="listTable_4">
+<table id="infoList3" class="table_border odd_even_list" border="0" cellpadding="0" cellspacing="0">
+	<thead>
+		<tr>
+			<td width="25" align="center"><input id="selectAll" name="selectAll" type="checkbox" onclick="" /></td>
+			<td align="left">标题</td>
+			<td width="80" align="center">管理操作</td>			
+			<td width="45" align="center">权重</td>
+			<td width="80" align="center">送审人</td>
+			<td width="110" align="center">送审时间</td>
+		</tr>
+	</thead>
+	<tbody>
+		 <tr>
+			<td align="center"><input id="1" name="" class="inputHeadCol" type="checkbox" /></td>
+			<td align="left"><ul class="optUL">
+					<li class="ico_document"></li>					
+				</ul> <a href="javascript:void(0);" target="_self">[国内新闻] 信询问新闻XXXX</a></td>
+			<td align="center"><ul class="optUL">					
+					<li class="ico_submit"></li>
+					<li class="ico_edit"></li>
+					<li class="ico_delete" ></li>
+				</ul></td>			
+			<td align="center">90</td>
+			<td align="center">送审人</td>
+			<td align="center">2010-12-05 01:58</td>
+		</tr>
+        <tr>
+			<td align="center"><input id="1" name="" class="inputHeadCol" type="checkbox" /></td>
+			<td align="left"><ul class="optUL">
+					<li class="ico_document"></li>					
+				</ul> <a href="javascript:void(0);" target="_self">[国内新闻] 信询问新闻XXXX</a></td>
+			<td align="center"><ul class="optUL">					
+					<li class="ico_submit"></li>
+					<li class="ico_edit"></li>
+					<li class="ico_delete" ></li>
+				</ul></td>			
+			<td align="center">90</td>
+			<td align="center">送审人</td>
+			<td align="center">2010-12-05 01:58</td>
+		</tr>
+        <tr>
+			<td align="center"><input id="1" name="" class="inputHeadCol" type="checkbox" /></td>
+			<td align="left"><ul class="optUL">
+					<li class="ico_document"></li>					
+				</ul> <a href="javascript:void(0);" target="_self">[国内新闻] 信询问新闻XXXX</a></td>
+			<td align="center"><ul class="optUL">					
+					<li class="ico_submit"></li>
+					<li class="ico_edit"></li>
+					<li class="ico_delete" ></li>
+				</ul></td>			
+			<td align="center">90</td>
+			<td align="center">送审人</td>
+			<td align="center">2010-12-05 01:58</td>
+		</tr>
+        <tr>
+			<td align="center"><input id="1" name="" class="inputHeadCol" type="checkbox" /></td>
+			<td align="left"><ul class="optUL">
+					<li class="ico_document"></li>					
+				</ul> <a href="javascript:void(0);" target="_self">[国内新闻] 信询问新闻XXXX</a></td>
+			<td align="center"><ul class="optUL">					
+					<li class="ico_submit"></li>
+					<li class="ico_edit"></li>
+					<li class="ico_delete" ></li>
+				</ul></td>			
+			<td align="center">90</td>
+			<td align="center">送审人</td>
+			<td align="center">2010-12-05 01:58</td>
+		</tr>
+        <tr>
+			<td align="center"><input id="1" name="" class="inputHeadCol" type="checkbox" /></td>
+			<td align="left"><ul class="optUL">
+					<li class="ico_document"></li>					
+				</ul> <a href="javascript:void(0);" target="_self">[国内新闻] 信询问新闻XXXX</a></td>
+			<td align="center"><ul class="optUL">					
+					<li class="ico_submit"></li>
+					<li class="ico_edit"></li>
+					<li class="ico_delete" ></li>
+				</ul></td>			
+			<td align="center">90</td>
+			<td align="center">送审人</td>
+			<td align="center">2010-12-05 01:58</td>
+		</tr>
+		  
+		
+	</tbody>
+	<tfoot>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+	</tfoot>
+</table>
+<table class="table_pageing" border="0" cellpadding="0" cellspacing="0">
+	<tr>
+		<td align="left" valign="middle">&nbsp;</td>
+		<td id="pageingArea" align="right" valign="middle">
+			共&nbsp;<span id="infoCount">836</span>&nbsp;条记录
+			<a href="javascript:void(0);">首页</a>
+			<a href="javascript:void(0);">上一页</a>
+			<a href="javascript:void(0);">下一页</a>
+			<a href="javascript:void(0);">尾页</a>
+			每页
+			<select id="pageSize" name="pageSize" class="input_select" >
+				<option value="15" selected="selected">15</option>
+				<option value="20">20</option>
+				<option value="25">25</option>
+				<option value="30">30</option>
+				<option value="35">35</option>
+				<option value="40">40</option>
+				<option value="45">45</option>
+				<option value="50">50</option>
+			</select>
+			条记录
+			转到第
+			<select id="pageGoNum" name="pageSize" class="input_select" >
+				<option value="15" selected="selected">1/36</option>
+				<option value="20">2/36</option>
+				<option value="25">3/36</option>
+				<option value="30">4/36</option>
+				<option value="35">5/36</option>
+				<option value="40">6/36</option>
+				<option value="45">7/36</option>
+				<option value="50">8/36</option>
+				<option value="50">21/36</option>
+				<option value="50">22/136</option>
+				<option value="50">123/136</option>
+			</select>
+			<span id="pageCur" class="hidden">1</span>
+			页
+			
+			
+		<!--共 890 条记录 页次：1/38 页 首页 上一页 下一页 尾页 每页（）条记录 转到第（）页-->
+		</td>
+	</tr>
+</table>
+
+<table class="table_option" border="0" cellpadding="0" cellspacing="0">
+	<tr>
+		<td align="left" valign="middle">
+			<input id="btn1" name="btn1" type="button" onclick="javascript:void(0);" value="送审" />
+			<input id="btn3" name="btn3" type="button" onclick="javascript:void(0);" value="移动" />
+            <input id="btn3" name="btn3" type="button" onclick="javascript:void(0);" value="删除" />
+		</td>
+	</tr>
+</table>
+</div>
+
+
+<div class="infoListTable hidden" id="listTable_5">
+<table id="infoList3" class="table_border odd_even_list" border="0" cellpadding="0" cellspacing="0">
+	<thead>
+		<tr>
+			<td width="25" align="center"><input id="selectAll" name="selectAll" type="checkbox" onclick="" /></td>
+			<td align="left">标题</td>
+			<td width="80" align="center">管理操作</td>			
+			<td width="45" align="center">权重</td>
+			<td width="80" align="center">创建人</td>
+			<td width="110" align="center">创建时间</td>
+		</tr>
+	</thead>
+	<tbody>
+		   <tr>
+			<td align="center"><input id="1" name="" class="inputHeadCol" type="checkbox" /></td>
+			<td align="left"><ul class="optUL">
+					<li class="ico_document"></li>					
+				</ul> <a href="javascript:void(0);" target="_self">[国内新闻] 信询问新闻XXXX</a></td>
+			<td align="center"><ul class="optUL">					
+					<li class="ico_submit"></li>
+					<li class="ico_edit"></li>
+					<li class="ico_delete" ></li>
+				</ul></td>			
+			<td align="center">90</td>
+			<td align="center">创建人</td>
+			<td align="center">2010-12-05 01:58</td>
+		</tr>
+          <tr>
+			<td align="center"><input id="1" name="" class="inputHeadCol" type="checkbox" /></td>
+			<td align="left"><ul class="optUL">
+					<li class="ico_document"></li>					
+				</ul> <a href="javascript:void(0);" target="_self">[国内新闻] 信询问新闻XXXX</a></td>
+			<td align="center"><ul class="optUL">					
+					<li class="ico_submit"></li>
+					<li class="ico_edit"></li>
+					<li class="ico_delete" ></li>
+				</ul></td>			
+			<td align="center">90</td>
+			<td align="center">创建人</td>
+			<td align="center">2010-12-05 01:58</td>
+		</tr>		  
+		
+	</tbody>
+	<tfoot>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+	</tfoot>
+</table>
+<table class="table_pageing" border="0" cellpadding="0" cellspacing="0">
+	<tr>
+		<td align="left" valign="middle">&nbsp;</td>
+		<td id="pageingArea" align="right" valign="middle">
+			共&nbsp;<span id="infoCount">836</span>&nbsp;条记录
+			<a href="javascript:void(0);">首页</a>
+			<a href="javascript:void(0);">上一页</a>
+			<a href="javascript:void(0);">下一页</a>
+			<a href="javascript:void(0);">尾页</a>
+			每页
+			<select id="pageSize" name="pageSize" class="input_select" >
+				<option value="15" selected="selected">15</option>
+				<option value="20">20</option>
+				<option value="25">25</option>
+				<option value="30">30</option>
+				<option value="35">35</option>
+				<option value="40">40</option>
+				<option value="45">45</option>
+				<option value="50">50</option>
+			</select>
+			条记录
+			转到第
+			<select id="pageGoNum" name="pageSize" class="input_select" >
+				<option value="15" selected="selected">1/36</option>
+				<option value="20">2/36</option>
+				<option value="25">3/36</option>
+				<option value="30">4/36</option>
+				<option value="35">5/36</option>
+				<option value="40">6/36</option>
+				<option value="45">7/36</option>
+				<option value="50">8/36</option>
+				<option value="50">21/36</option>
+				<option value="50">22/136</option>
+				<option value="50">123/136</option>
+			</select>
+			<span id="pageCur" class="hidden">1</span>
+			页
+			
+			
+		<!--共 890 条记录 页次：1/38 页 首页 上一页 下一页 尾页 每页（）条记录 转到第（）页-->
+		</td>
+	</tr>
+</table>
+
+<table class="table_option" border="0" cellpadding="0" cellspacing="0">
+	<tr>
+		<td align="left" valign="middle">
+			<input id="btn1" name="btn1" type="button" onclick="javascript:void(0);" value="送审" />
+			<input id="btn3" name="btn3" type="button" onclick="javascript:void(0);" value="推送" />
+            <input id="btn3" name="btn3" type="button" onclick="javascript:void(0);" value="移动" />
+            <input id="btn3" name="btn3" type="button" onclick="javascript:void(0);" value="删除" />
+		</td>
+	</tr>
+</table>
+</div>
+
+
+
+<div class="infoListTable hidden" id="listTable_6">
+<table id="infoList3" class="table_border odd_even_list" border="0" cellpadding="0" cellspacing="0">
+	<thead>
+		<tr>
+			<td width="25" align="center"><input id="selectAll" name="selectAll" type="checkbox" onclick="" /></td>
+			<td align="left">标题</td>
+			<td width="80" align="center">管理操作</td>			
+			<td width="45" align="center">权重</td>
+			<td width="80" align="center">删除人</td>
+			<td width="110" align="center">删除时间</td>
+		</tr>
+	</thead>
+	<tbody>
+		 <tr>
+			<td align="center"><input id="1" name="" class="inputHeadCol" type="checkbox" /></td>
+			<td align="left"><ul class="optUL">
+					<li class="ico_document"></li>					
+				</ul> <a href="javascript:void(0);" target="_self">[国内新闻] 信询问新闻XXXX</a></td>
+			<td align="center"><ul class="optUL">					
+					<li class="ico_reduce"></li>
+					<li class="ico_edit"></li>
+					<li class="ico_Clear" ></li>
+				</ul></td>			
+			<td align="center">90</td>
+			<td align="center">删除人</td>
+			<td align="center">2010-12-05 01:58</td>
+		</tr>
+         <tr>
+			<td align="center"><input id="1" name="" class="inputHeadCol" type="checkbox" /></td>
+			<td align="left"><ul class="optUL">
+					<li class="ico_document"></li>					
+				</ul> <a href="javascript:void(0);" target="_self">[国内新闻] 信询问新闻XXXX</a></td>
+			<td align="center"><ul class="optUL">					
+					<li class="ico_reduce"></li>
+					<li class="ico_edit"></li>
+					<li class="ico_Clear" ></li>
+				</ul></td>			
+			<td align="center">90</td>
+			<td align="center">删除人</td>
+			<td align="center">2010-12-05 01:58</td>
+		</tr>
+         <tr>
+			<td align="center"><input id="1" name="" class="inputHeadCol" type="checkbox" /></td>
+			<td align="left"><ul class="optUL">
+					<li class="ico_document"></li>					
+				</ul> <a href="javascript:void(0);" target="_self">[国内新闻] 信询问新闻XXXX</a></td>
+			<td align="center"><ul class="optUL">					
+					<li class="ico_reduce"></li>
+					<li class="ico_edit"></li>
+					<li class="ico_Clear" ></li>
+				</ul></td>			
+			<td align="center">90</td>
+			<td align="center">删除人</td>
+			<td align="center">2010-12-05 01:58</td>
+		</tr>
+          <tr>
+			<td align="center"><input id="1" name="" class="inputHeadCol" type="checkbox" /></td>
+			<td align="left"><ul class="optUL">
+					<li class="ico_document"></li>					
+				</ul> <a href="javascript:void(0);" target="_self">[国内新闻] 信询问新闻XXXX</a></td>
+			<td align="center"><ul class="optUL">					
+					<li class="ico_reduce"></li>
+					<li class="ico_edit"></li>
+					<li class="ico_Clear" ></li>
+				</ul></td>			
+			<td align="center">90</td>
+			<td align="center">删除人</td>
+			<td align="center">2010-12-05 01:58</td>
+		</tr>		  
+		
+	</tbody>
+	<tfoot>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+	</tfoot>
+</table>
+<table class="table_pageing" border="0" cellpadding="0" cellspacing="0">
+	<tr>
+		<td align="left" valign="middle">&nbsp;</td>
+		<td id="pageingArea" align="right" valign="middle">
+			共&nbsp;<span id="infoCount">836</span>&nbsp;条记录
+			<a href="javascript:void(0);">首页</a>
+			<a href="javascript:void(0);">上一页</a>
+			<a href="javascript:void(0);">下一页</a>
+			<a href="javascript:void(0);">尾页</a>
+			每页
+			<select id="pageSize" name="pageSize" class="input_select" >
+				<option value="15" selected="selected">15</option>
+				<option value="20">20</option>
+				<option value="25">25</option>
+				<option value="30">30</option>
+				<option value="35">35</option>
+				<option value="40">40</option>
+				<option value="45">45</option>
+				<option value="50">50</option>
+			</select>
+			条记录
+			转到第
+			<select id="pageGoNum" name="pageSize" class="input_select" >
+				<option value="15" selected="selected">1/36</option>
+				<option value="20">2/36</option>
+				<option value="25">3/36</option>
+				<option value="30">4/36</option>
+				<option value="35">5/36</option>
+				<option value="40">6/36</option>
+				<option value="45">7/36</option>
+				<option value="50">8/36</option>
+				<option value="50">21/36</option>
+				<option value="50">22/136</option>
+				<option value="50">123/136</option>
+			</select>
+			<span id="pageCur" class="hidden">1</span>
+			页
+			
+			
+		<!--共 890 条记录 页次：1/38 页 首页 上一页 下一页 尾页 每页（）条记录 转到第（）页-->
+		</td>
+	</tr>
+</table>
+
+<table class="table_option" border="0" cellpadding="0" cellspacing="0">
+	<tr>
+		<td align="left" valign="middle">
+			<input id="btn1" name="btn1" type="button" onclick="javascript:void(0);" value="还原" />
+			<input id="btn3" name="btn3" type="button" onclick="javascript:void(0);" value="彻底删除" />
+            <input id="btn3" name="btn3" type="button" onclick="javascript:void(0);" value="清空回收站" />            
+		</td>
+	</tr>
+</table>
+</div>
+
+
+</body>
+</html>

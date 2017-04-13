@@ -1,0 +1,212 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>时光门户管理系统</title>
+
+
+<link type="text/css" rel="stylesheet" href="styles/main.css" />
+<link type="text/css" rel="stylesheet" href="styles/sub.css" />
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/sysUI.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	Init_InfoTable("infoList");
+	initButtomStyle();
+	if($.browser.msie&&$.browser.version=="6.0"&&$("html")[0].scrollHeight>$("html").height()) $("html").css("overflowY","scroll"); 
+});
+
+function addInfo()
+{
+	top.OpenModalWindow("12345","info_dialog.html",450,220);	
+}
+
+function msg1()
+{
+	top.msgAlert("一般提示信息");
+}
+
+function msg2()
+{
+	top.msgError("错误提示信息");
+}
+
+function msg3()
+{
+	top.msgWargin("警告提示信息");
+}
+
+function confirmTest()
+{
+	top.msgConfirm("添加成功","deleteInfo()");
+}
+
+function deleteInfo()
+{
+	alert("可以在此函数做选“是”后的一些处理工作。")
+}
+</script>
+</head>
+
+<body>
+<table class="table_option" border="0" cellpadding="0" cellspacing="0">
+	<tr>
+		<td align="left" valign="middle">
+			<input id="addinfo" name="addinfo" class="x_add" type="button" onclick="addInfo();"  />
+			<input id="i002" name="i002" type="button" onclick="msg1()" value="一般提示" />
+			<input id="i003" name="i003" type="button" onclick="msg3()" value="警告提示" />
+			<input id="i004" name="i004" type="button" onclick="msg2()" value="错误提示" />
+			<input id="i005" name="i005" type="button" onclick="confirmTest();" value="选择提示" hidefocus="true"/>
+			<input id="i006" name="i006" type="button" onclick="getInputBoxSelected('infoList');" value="获取选中项" />
+		</td>
+		<td align="right" valign="middle">
+			<select id="searchFields" class="input_select width50">
+				<option selected="selected" value="">标题</option>
+				<option value="">作者</option>
+				<option value="">来源</option>
+			</select>
+			<input id="searchkey" type="text" class="input_text" value=""  />
+			<input id="btnSearch" type="button" class="btn x2" value="搜索" />
+			<select id="orderByFields" class="input_select">
+				<option selected="selected" value="">按时间倒序(默认)</option>
+				<option value="">按时间顺序</option>
+				<option value="">按作者倒序</option>
+				<option value="">按作者顺序</option>
+			</select>
+		</td>
+	</tr>
+</table>
+
+<table id="infoList" class="table_border odd_even_list" border="0" cellpadding="0" cellspacing="0">
+	<thead>
+		<tr>
+			<td width="25" align="center"><input id="selectAll" name="selectAll" type="checkbox" onclick="" /></td>
+			<td align="left">标题</td>
+			<td width="100" align="center">管理操作</td>
+			<td width="45" align="center">点击量</td>
+			<td width="45" align="center">权重</td>
+			<td width="80" align="center">发布人</td>
+			<td width="110" align="center">发布时间</td>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td align="center"><input id="1" name="" type="checkbox" /></td>
+			<td align="left"><a href="javascript:void(0);" target="_self">南方冻雨再次扩大考验春运</a></td>
+			<td align="center">刘德华</td>
+			<td align="center">990</td>
+			<td align="center">90</td>
+			<td align="center">刘德华</td>
+			<td align="center">2010-12-05 01:58</td>
+		</tr>
+		<tr>
+			<td align="center"><input id="2" name="" type="checkbox" /></td>
+			<td align="left"><a href="javascript:void(0);" target="_self">好好学天向上好好学习天天向上重庆部分学校行贿买农民工培训指标以获暴利</a></td>
+			<td align="center">刘德华</td>
+			<td align="center">990</td>
+			<td align="center">90</td>
+			<td align="center">刘德华</td>
+			<td align="center">2010-12-05 01:58</td>
+		</tr>
+		<tr>
+			<td align="center"><input id="3" name="" type="checkbox" /></td>
+			<td align="left"><a href="javascript:void(0);" target="_self">重庆部分学校行贿买农民工培训指标以获暴利</a></td>
+			<td align="center">刘德华</td>
+			<td align="center">990</td>
+			<td align="center">90</td>
+			<td align="center">刘德华</td>
+			<td align="center">2010-12-05 01:58</td>
+		</tr>
+		<tr>
+			<td align="center"><input id="4" name="" type="checkbox" /></td>
+			<td align="left"><a href="javascript:void(0);" target="_self">重庆部分学校行贿买农民工培训指标以获暴利</a></td>
+			<td align="center">刘德华</td>
+			<td align="center">990</td>
+			<td align="center">90</td>
+			<td align="center">刘德华</td>
+			<td align="center">2010-12-05 01:58</td>
+		</tr>
+		<tr>
+			<td align="center"><input id="5" name="" type="checkbox" /></td>
+			<td align="left"><a href="javascript:void(0);" target="_self">重庆部分学校行贿买农民工培训指标以获暴利</a></td>
+			<td align="center">刘德华</td>
+			<td align="center">990</td>
+			<td align="center">90</td>
+			<td align="center">刘德华</td>
+			<td align="center">2010-12-05 01:58</td>
+		</tr>
+		
+		
+		
+	</tbody>
+	<tfoot>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+	</tfoot>
+</table>
+<table class="table_pageing" border="0" cellpadding="0" cellspacing="0">
+	<tr>
+		<td align="left" valign="middle">&nbsp;</td>
+		<td id="pageingArea" align="right" valign="middle">
+			共&nbsp;<span id="infoCount">836</span>&nbsp;条记录
+			<a href="javascript:void(0);">首页</a>
+			<a href="javascript:void(0);">上一页</a>
+			<a href="javascript:void(0);">下一页</a>
+			<a href="javascript:void(0);">尾页</a>
+			每页
+			<select id="pageSize" name="pageSize" class="input_select" >
+				<option value="15" selected="selected">15</option>
+				<option value="20">20</option>
+				<option value="25">25</option>
+				<option value="30">30</option>
+				<option value="35">35</option>
+				<option value="40">40</option>
+				<option value="45">45</option>
+				<option value="50">50</option>
+			</select>
+			条记录
+			转到第
+			<select id="pageGoNum" name="pageSize" class="input_select" >
+				<option value="15" selected="selected">1/36</option>
+				<option value="20">2/36</option>
+				<option value="25">3/36</option>
+				<option value="30">4/36</option>
+				<option value="35">5/36</option>
+				<option value="40">6/36</option>
+				<option value="45">7/36</option>
+				<option value="50">8/36</option>
+				<option value="50">21/36</option>
+				<option value="50">22/136</option>
+				<option value="50">123/136</option>
+			</select>
+			<span id="pageCur" class="hidden">1</span>
+			页
+			
+			
+		<!--共 890 条记录 页次：1/38 页 首页 上一页 下一页 尾页 每页（）条记录 转到第（）页-->
+		</td>
+	</tr>
+</table>
+
+<table class="table_option" border="0" cellpadding="0" cellspacing="0">
+	<tr>
+		<td align="left" valign="middle">
+			<input id="btn1" name="btn1" type="button" onclick="javascript:void(0);" value="添加" />
+			<input id="btn2" name="btn2" type="button" onclick="javascript:void(0);" value="修改" />
+			<input id="btn3" name="btn3" type="button" onclick="javascript:void(0);" value="删除" />
+			<input id="btn4" name="btn4" type="button" onclick="javascript:void(0);" value="审核中" />
+			<input id="btn5" name="btn5" type="button" onclick="javascript:void(0);" value="退回重审" />
+			<input id="btn6" name="btn6" type="button" onclick="javascript:void(0);" value="保存并提交" />
+		</td>
+	</tr>
+</table>
+
+</body>
+</html>

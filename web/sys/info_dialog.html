@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>时光门户管理系统</title>
+
+
+<link type="text/css" rel="stylesheet" href="styles/main.css" />
+<link type="text/css" rel="stylesheet" href="styles/sub.css" />
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/sysUI.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	initButtomStyle();
+	init_input();
+});
+
+</script>
+</head>
+
+<body>
+<span class="blank12"></span>
+<form id="form1" name="form1" action="#" method="post">
+<table id="" width="100%" class="table_form" border="0" cellpadding="0" cellspacing="0">
+	<tbody>
+		<tr>
+			<th>栏目：</th>
+			<td colspan="7">
+				<select id="orderByFields" class="input_select">
+					<option selected="selected" value="">按时间倒序(默认)</option>
+					<option value="">按时间顺序</option>
+					<option value="">按作者倒序</option>
+					<option value="">按作者顺序</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<th>标题：</th>
+			<td colspan="7">
+				<input id="" name="" type="text" style="width:200px;" value="" /><span id="wordnum">12</span>字
+			</td>
+		</tr>
+		<tr>
+			<th>副标题：</th>
+			<td colspan="7">
+				<input id="" name="" type="text" style="width:200px;" value="" /><span id="wordnum">12</span>字
+			</td>
+		</tr>
+		<tr>
+			<th>Tag：</th>
+			<td colspan="7">
+				<input id="" name="" type="text" style="width:200px;" value="" /><input id="i005" name="i005" type="button" onclick="javascript:void(0);" value="自动获取" />
+			</td>
+		</tr>
+	</tbody>
+</table>
+<span class="blank12"></span>
+<div class="line2h"></div>
+<span class="blank3"></span>
+<table class="table_option" border="0" cellpadding="0" cellspacing="0">
+	<tr>
+		<td align="center" valign="middle">
+			<input id="i005" name="i005" type="button" onclick="parent.top.msgAlert('添加成功')" value="审核中" />
+			<input id="i005" name="i005" type="submit" onclick="javascript:void(0);" value="退回重审" />
+			<input id="i005" name="i005" type="reset" onclick="javascript:void(0);" value="保存并提交" />
+		</td>
+	</tr>
+</table>
+<span class="blank3"></span>
+</form>
+</body>
+</html>

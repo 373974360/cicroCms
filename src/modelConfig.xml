@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<properties>
+<category name="article">
+  <property name="TableName" value="cs_info_article"/>
+  <property name="AddSQL" value="addArticle"/> 
+  <property name="UpdateSQL" value="updateArticle"/>
+  <property name="SelectSQL" value="getInfoArticleBean"/>
+  <property name="class_name" value="com.cicro.wcm.bean.cms.info.ArticleBean"/>
+</category>
+ 
+ <category name="video">
+  <property name="TableName" value="cs_info_video"/>
+  <property name="AddSQL" value="addVideo"/> 
+  <property name="UpdateSQL" value="updateVideo"/>
+  <property name="SelectSQL" value="getVideoBean"/>
+  <property name="class_name" value="com.cicro.wcm.bean.cms.info.VideoBean"/>
+ </category>
+ 
+ <category name="pic">
+  <property name="TableName" value="cs_info_pic"/>
+  <property name="AddSQL" value="insert_info_pic"/> 
+  <property name="UpdateSQL" value="update_info_pic"/>
+  <property name="SelectSQL" value="getPicInfoBean"/>
+  <property name="class_name" value="com.cicro.wcm.bean.cms.info.PicBean"/>
+ </category>
+
+<category name="link">
+  <property name="TableName" value=""/>
+  <property name="AddSQL" value=""/> 
+  <property name="UpdateSQL" value=""/>
+  <property name="SelectSQL" value="selectInfoBeanById"/>
+  <property name="class_name" value="com.cicro.wcm.bean.cms.info.InfoBean"/>
+ </category>
+ 	
+ <category name="gkftygs">
+  <property name="TableName" value="cs_gk_f_tygs"/>
+  <property name="AddSQL" value="insert_gk_f_tygs"/> 
+  <property name="UpdateSQL" value="update_gk_f_tygs"/>
+  <property name="SelectSQL" value="getFKFtygsBean"/>
+  <property name="class_name" value="com.cicro.wcm.bean.cms.info.GKFtygsBean"/>
+ </category>
+ 
+ <category name="gkfflgw">
+  <property name="TableName" value="cs_gk_f_flgw"/>
+  <property name="AddSQL" value="insert_gk_f_flgw"/> 
+  <property name="UpdateSQL" value="update_gk_f_flgw"/>
+  <property name="SelectSQL" value="getGKFflgwBean"/>
+  <property name="class_name" value="com.cicro.wcm.bean.cms.info.GKFflgwBean"/>
+ </category>
+
+<category name="gkfldcy">
+  <property name="TableName" value="cs_gk_f_ldcy"/>
+  <property name="AddSQL" value="insert_gk_f_ldcy"/> 
+  <property name="UpdateSQL" value="update_gk_f_ldcy"/>
+  <property name="SelectSQL" value="getGKFldcyBean"/>
+  <property name="class_name" value="com.cicro.wcm.bean.cms.info.GKFldcyBean"/>
+ </category>
+
+ <category name="gkfxsjg">
+  <property name="TableName" value="cs_gk_f_xsjg"/>
+  <property name="AddSQL" value="insert_gk_f_xsjg"/> 
+  <property name="UpdateSQL" value="update_gk_f_xsjg"/>
+  <property name="SelectSQL" value="getGKFXsjgbBean"/>
+  <property name="class_name" value="com.cicro.wcm.bean.cms.info.GKFXsjgbBean"/>
+ </category>
+ 
+ <category name="gkfjggk">
+  <property name="TableName" value="cs_gk_f_jggk"/>
+  <property name="AddSQL" value="insert_gk_f_jggk"/> 
+  <property name="UpdateSQL" value="update_gk_f_jggk"/>
+  <property name="SelectSQL" value="get_gk_f_jggkBean"/>
+  <property name="class_name" value="com.cicro.wcm.bean.cms.info.GKFjggkBean"/>
+ </category>
+
+ <category name="gkfxzzf">
+  <property name="TableName" value="cs_gk_f_xzzf"/>
+  <property name="AddSQL" value="insert_gk_f_xzzf"/>
+  <property name="UpdateSQL" value="update_gk_f_xzzf"/>
+  <property name="SelectSQL" value="getGKFXzzfBean"/>
+  <property name="class_name" value="com.cicro.wcm.bean.cms.info.GKFXzzfBean"/>
+ </category>
+ 
+ <category name="gkfbszn">
+  <property name="TableName" value="cs_gk_f_bszn"/>
+  <property name="AddSQL" value="insert_gk_f_bszn"/> 
+  <property name="UpdateSQL" value="update_gk_f_bszn"/>
+  <property name="SelectSQL" value="get_gk_f_bsznBean"/>
+  <property name="class_name" value="com.cicro.wcm.bean.cms.info.GKFbsznBean"/>
+ </category>
+
+  <category name="gkvideo">
+  <property name="TableName" value="cs_info_video"/>
+  <property name="AddSQL" value="insert_gk_f_video"/>
+  <property name="UpdateSQL" value="update_gk_f_video"/>
+  <property name="SelectSQL" value="getGKVideoBean"/>
+  <property name="class_name" value="com.cicro.wcm.bean.cms.info.GKVideoBean"/>
+ </category>
+ 
+<category name="gkpic">
+  <property name="TableName" value="cs_info_pic"/>
+  <property name="AddSQL" value="insert_info_pic"/>
+  <property name="UpdateSQL" value="update_info_pic"/>
+  <property name="SelectSQL" value="getGKPicBean"/>
+  <property name="class_name" value="com.cicro.wcm.bean.cms.info.GKPicBean"/>
+ </category>
+</properties>

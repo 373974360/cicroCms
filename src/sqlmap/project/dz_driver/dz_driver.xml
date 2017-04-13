@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="siteError">
+    <sql id="getDriverViolationList_sql_conn">
+        where 1=1
+        <if test="status != null">
+            and status in (${status})
+        </if>
+    </sql>
+    <select id="getDriverViolationCount" parameterType="Map" resultType="java.lang.String" >
+        select count(id) from dz_driverViolations
+        <include refid="getDriverViolationList_sql_conn"/>
+    </select>
+
+    <insert id="insertDriverViolation" parameterType="com.cicro.project.dz_driver.DriverViolationBean">
+		insert into dz_driverViolations(
+			id,
+			companyId,
+			name,
+			carNo,
+			reason,
+			advice,
+			violationTime,
+			addTime,
+			status
+		) values(
+			${id},
+			${companyId},
+			#{name},
+			#{carNo},
+			#{reason},
+			#{advice},
+			#{violationTime},
+			#{addTime},
+			#{status}
+		)
+	</insert>
+
+    <update id="updateDriverViolation"  parameterType="com.cicro.project.dz_driver.DriverViolationBean">
+		update dz_driverViolations set
+				companyId=${companyId},
+				name=#{name},
+				carNo=#{carNo},
+				reason=#{reason},
+				advice=#{advice},
+				violationTime=#{violationTime}
+		where id=${id}
+	</update>
+
+
+
+    <update id="publishDriverViolation" parameterType="Map" >
+        update dz_driverViolations set
+		status = #{status},
+		where 1=1
+        <if test="id != null">
+            and id in (${id})
+        </if>
+    </update>
+
+    <update id="deleteDriverViolation" parameterType="Map" >
+        update dz_driverViolations set status = '-1' where 1=1
+		<if test="id != null">
+			and id in (${id})
+		</if>
+		<if test="siteId != null">
+			and companyId=${companyId}
+		</if>
+    </update>
+
+    <select id="getAllDriverViolation" parameterType="Map" resultType="com.cicro.project.dz_driver.DriverViolationBean" >
+        select id,companyId,name,carNo,reason,advice,violationTime,addTime,status from dz_driverViolations <include refid="getDriverViolationList_sql_conn"/>
+    </select>
+
+    <select id="getDriverViolationList" parameterType="Map" resultType="com.cicro.project.dz_driver.DriverViolationBean" >
+        select * from (
+        select row_.*, rownum rownum_ from (
+        select id,companyId,name,carNo,reason,advice,violationTime,addTime,status from dz_driverViolations <include refid="getDriverViolationList_sql_conn"/>
+        order by ${orderby}
+        <![CDATA[
+		        ) row_ where rownum <=#{page_size,,jdbcType=INTEGER}+#{start_num,,jdbcType=INTEGER}
+	    	) where rownum_ >=#{start_num,,jdbcType=INTEGER} + 1
+	    ]]>
+    </select>
+
+    <select id="getDriverViolationList_mysql" parameterType="Map" resultType="com.cicro.project.dz_driver.DriverViolationBean" >
+        select id,companyId,name,carNo,reason,advice,violationTime,addTime,status from dz_driverViolations <include refid="getDriverViolationList_sql_conn"/>
+        order by ${orderby} limit ${start_num,,jdbcType=INTEGER},${page_size,,jdbcType=INTEGER}
+    </select>
+
+    <select id="getDriverViolationList_mssql" parameterType="Map" resultType="com.cicro.project.dz_driver.DriverViolationBean" >
+        select top #{page_size} id,companyId,name,carNo,reason,advice,violationTime,addTime,status
+        from dz_driverViolations
+        <include refid="getDriverViolationList_sql_conn"/>
+        and id not in
+        (select top ${start_num} id
+        from dz_driverViolations
+        <include refid="getDriverViolationList_sql_conn"/>
+        order by ${orderby} )
+        order by ${orderby}
+    </select>
+    
+    <select id="getTotleDriverViolationList" parameterType="Map" resultType="com.cicro.project.dz_driver.DriverViolationBean" >
+    	<![CDATA[
+        select * from (
+        select row_.*, rownum rownum_ from (
+        select a.id,a.companyId,a.name,a.carNo,a.reason,a.advice,a.violationTime,a.addTime,a.status from dz_driverViolations a right join (select count(*),id from dz_driverViolations group by id having count(*) >= #{totle,,jdbcType=INTEGER} and count(*) <= #{totleend,,jdbcType=INTEGER} ) b on a.id = b.id 
+        order by ${orderby}
+       
+		        ) row_ where rownum <=#{page_size,,jdbcType=INTEGER}+#{start_num,,jdbcType=INTEGER}
+	    	) where rownum_ >=#{start_num,,jdbcType=INTEGER} + 1
+	    ]]>
+    </select>
+
+    <select id="getTotleDriverViolationList_mysql" parameterType="Map" resultType="com.cicro.project.dz_driver.DriverViolationBean" >
+    <![CDATA[
+        select a.id,a.companyId,a.name,a.carNo,a.reason,a.advice,a.violationTime,a.addTime,a.status from dz_driverViolations a right join (select count(*),id from dz_driverViolations group by id having count(*) >= #{totle,,jdbcType=INTEGER} and count(*) <= #{totleend,,jdbcType=INTEGER} ) b on a.id = b.id 
+        order by ${orderby} limit ${start_num,,jdbcType=INTEGER},${page_size,,jdbcType=INTEGER}
+        ]]>
+    </select>
+    
+    <select id="getTotleDriverViolationCount" parameterType="Map" resultType="java.lang.String" >
+       <![CDATA[
+       select count(*) from (
+        select a.id from dz_driverViolations a right join (select count(*),id from dz_driverViolations group by id having count(*) >= #{totle,,jdbcType=INTEGER} and count(*) <= #{totleend,,jdbcType=INTEGER} ) b on a.id = b.id 
+        order by ${orderby} )
+        ]]>
+    </select>
+    
+    
+
+	<select id="getDriverViolationBean"  parameterType="Map" resultType="com.cicro.project.dz_driver.DriverViolationBean" >
+		select id,companyId,name,carNo,reason,advice,violationTime,addTime,status from dz_driverViolations where id=${id}
+	</select>
+
+	<!--*****************************************企业信息**********************************************-->
+
+	<sql id="getDriverCompanyList_sql_conn">
+        where 1=1
+        <if test="name != null">
+            and (simpleName like '%#{simpleName}%' or allName like '%#{allName}%')
+        </if>
+        <if test="status != null">
+            and status = #{status}
+        </if>
+    </sql>
+
+	<select id="getAllDriverCompanyList" parameterType="Map" resultType="com.cicro.project.dz_driver.DriverCompanyBean" >
+        select id,simpleName,allName,tel,address,addTime,status from dz_driverCompany <include refid="getDriverCompanyList_sql_conn"/> order by ${sort_name} ${sort_type}
+    </select>
+
+	<select id="getDriverCompanyBean"  parameterType="Map" resultType="com.cicro.project.dz_driver.DriverCompanyBean" >
+		select id,simpleName,allName,tel,address,addTime,status from dz_driverCompany where id=${id}
+	</select>
+
+	<insert id="insertDriverCompany" parameterType="com.cicro.project.dz_driver.DriverCompanyBean">
+		insert into dz_driverCompany(id,simpleName,allName,tel,address,addTime,status) values(${id},#{simpleName},#{allName},#{tel},#{address},#{addTime},#{status})
+	</insert>
+
+    <update id="updateDriverCompany"  parameterType="com.cicro.project.dz_driver.DriverCompanyBean">
+		update dz_driverCompany set
+				simpleName=#{simpleName},
+				allName=#{allName},
+				tel=#{tel},
+				address=#{address}
+		where id=${id}
+	</update>
+	
+	<sql id="getDriverCompanyList_sql_conn">
+        where 1=1
+        <if test="simpleName != null">
+            and (simpleName like '%${simpleName}%' or allName like '%${allName}%')
+        </if>
+        <if test="status != null">
+            and status in (${status})
+        </if>
+    </sql>
+    <select id="getDriverCompanyCount" parameterType="Map" resultType="java.lang.String" >
+        select count(id) from dz_driverCompany
+        <include refid="getDriverCompanyList_sql_conn"/>
+    </select>
+	
+	<select id="getDriverCompanyList" parameterType="Map" resultType="com.cicro.project.dz_driver.DriverCompanyBean" >
+        select * from (
+        select row_.*, rownum rownum_ from (
+        select id,simpleName,allName,tel,address,addTime,status from dz_driverCompany <include refid="getDriverCompanyList_sql_conn"/>
+        order by ${orderby}
+        <![CDATA[
+		        ) row_ where rownum <=#{page_size,,jdbcType=INTEGER}+#{start_num,,jdbcType=INTEGER}
+	    	) where rownum_ >=#{start_num,,jdbcType=INTEGER} + 1
+	    ]]>
+    </select>
+
+    <select id="getDriverCompanyList_mysql" parameterType="Map" resultType="com.cicro.project.dz_driver.DriverCompanyBean" >
+        select id,simpleName,allName,tel,address,addTime,status from dz_driverCompany <include refid="getDriverCompanyList_sql_conn"/>
+        order by ${orderby} limit ${start_num,,jdbcType=INTEGER},${page_size,,jdbcType=INTEGER}
+    </select>
+
+    <!-- 根据条件删除纠错信息 -->
+    <update id="deleteDriverCompany" parameterType="Map" >
+        update dz_driverCompany set status = '-1' where 1=1
+		<if test="id != null">
+			and id in (${id})
+		</if>
+		<if test="status != null">
+			and status=#{status}
+		</if>
+    </update>
+</mapper>

@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>时光门户管理系统</title>
+
+
+<link type="text/css" rel="stylesheet" href="styles/main.css" />
+<link type="text/css" rel="stylesheet" href="styles/sub.css" />
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/sysUI.js"></script>
+<script charset="utf-8" src="kindeditor/kindeditor.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	initButtomStyle();
+	init_input();
+	init_editer("content1");
+});
+</script>
+</head>
+
+<body>
+<span class="blank12"></span>
+<form id="form1" name="form1" action="#" method="post">
+<table id="" class="table_form" border="0" cellpadding="0" cellspacing="0">
+	<tbody>
+		<tr>
+			<th><span class="f_red">*</span>栏目：</th>
+			<td colspan="7">
+				<select id="orderByFields" class="input_select">
+					<option selected="selected" value="">按时间倒序(默认)</option>
+					<option value="">按时间顺序</option>
+					<option value="">按作者倒序</option>
+					<option value="">按作者顺序</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<th><span class="f_red">*</span>标题：</th>
+			<td colspan="7">
+				<input id="" name="" type="text" style="width:300px;" value="" /><span id="wordnum">12</span>字
+			</td>
+		</tr>
+		<tr>
+			<th>副标题副标题副标题：</th>
+			<td colspan="7">
+				<input id="" name="" type="text" style="width:300px;" value="" /><span id="wordnum">12</span>字
+			</td>
+		</tr>
+		<tr>
+			<th>Tag：</th>
+			<td colspan="7">
+				<input id="" name="" type="text" style="width:300px;" value="" /><input id="i005" name="i005" type="button" onclick="javascript:void(0);" value="自动获取" />
+			</td>
+		</tr>
+		<tr>
+			<th>来源：</th>
+			<td width="135">
+				<input id="" name="" type="text" value="" />
+			</td>
+			<th style="width:50px;">作者：</th>
+			<td width="135">
+				<input id="" name="" type="text" value="" />
+			</td>
+			<th style="width:50px;">编辑：</th>
+			<td width="135">
+				<input id="" name="" type="text" value="" />
+			</td>
+			<td> </td>
+		</tr>
+		<tr>
+			<th style="vertical-align:top;">详细内容：</th>
+			<td colspan="7" style="">
+				<textarea id="content1" name="content1" style="width:660px;;height:300px;visibility:hidden;">
+</p>
+2010年11月，喜讯传来，时光软件成功签约新疆生产建设兵团电子政务外网一期建设项目，该项目是中国电子政务外网重要组成部分之一，由国家发改委和财政厅直接支持项目，它也将成为新疆生产建设兵团对外宣传的重要窗口。该项目的签约，是时光软件与中国电信再一次的深入合作，也充分证明了时光软件在电子政务行业内拥有极高的品牌效应，也说明了时光软件在西北地区深得客户的认同。
+</p>
+			</textarea>
+			<span class="blank9"></span>
+			<input id="ddd" name="" type="checkbox" checked="false" /><label for="ddd">远程图片本地化</label>
+			</td>
+		</tr>
+		<tr>
+			<th>焦点图片：</th>
+			<td colspan="7">
+				<input id="" name="" type="text" style="width:200px;" value="" />
+				<input id="i005" name="i005" type="button" onclick="javascript:void(0);" value="自动获取" />
+				<input id="i005" name="i005" type="button" onclick="javascript:void(0);" value="手动上传" />
+			</td>
+		</tr>
+		<tr>
+			<th style="vertical-align:top;">内容摘要：</th>
+			<td colspan="7">
+				<textarea id="content2" name="content2" style="width:650px;height:100px">
+2010年11月，喜讯传来，时光软件成功签约新疆生产建设兵团电子政务外网一期建设项目，该项目是中国电子政务外网重要组成部分之一，由国家发改委和财政厅直接支持项目户的认同。
+			</textarea>
+			</td>
+		</tr>
+		<tr>
+			<th>发布属性：</th>
+			<td colspan="7" >
+				<ul>
+					<li><input id="a" name="a" type="checkbox"  /><label for="a">置顶</label></li>
+					<li><input id="b" name="b" type="checkbox" checked="true" /><label for="b">焦点</label></li>
+					<li><input id="c" name="c" type="checkbox"  /><label for="c">推荐</label></li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<th>发布状态：</th>
+			<td colspan="7" >
+				<ul>
+					<li><input id="d" name="dd" type="radio"  /><label for="d">新稿新稿新稿新稿新稿</label></li>
+					<li><input id="e" name="dd" type="radio" checked="true" /><label for="e">待审核</label></li>
+					<li><input id="f" name="dd" type="radio"  /><label for="f">终审通过</label></li>
+				</ul>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<span class="blank12"></span>
+<div class="line2h"></div>
+<span class="blank3"></span>
+<table class="table_option" border="0" cellpadding="0" cellspacing="0">
+	<tr>
+		<td align="left" valign="middle" style="text-indent:100px;">
+			<input id="btn1" name="btn1" type="button" onclick="javascript:void(0);" value="添加" />
+			<input id="btn2" name="btn2" type="button" onclick="javascript:void(0);" value="修改" />
+			<input id="btn3" name="btn3" type="button" onclick="javascript:void(0);" value="删除" />
+			<input id="btn4" name="btn4" type="button" onclick="javascript:void(0);" value="审核中" />
+			<input id="btn5" name="btn5" type="submit" onclick="javascript:void(0);" value="退回重审" />
+			<input id="btn6" name="btn6" type="reset" onclick="javascript:void(0);" value="保存并提交" />
+		</td>
+	</tr>
+</table>
+<span class="blank3"></span>
+</form>
+</body>
+</html>
