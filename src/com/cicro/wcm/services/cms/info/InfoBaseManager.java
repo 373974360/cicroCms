@@ -515,7 +515,7 @@ public class InfoBaseManager {
         if(InfoDAO.updateInfoStatus(info_ids, "-1", stl)) {
             List m1 = InfoDAO.getFromInfoListByIDS(info_ids);
             if(m1 != null && m1.size() > 0) {
-                Iterator var7 = l.iterator();
+                Iterator var7 = m1.iterator();
 
                 while(var7.hasNext()) {
                     InfoBean ib1 = (InfoBean)var7.next();
