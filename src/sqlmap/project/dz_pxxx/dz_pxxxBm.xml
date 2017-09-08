@@ -77,7 +77,12 @@
 	<select id="getAllPxxxBmByPxID" parameterType="Map" resultType="com.cicro.project.dz_pxxx.PxxxBmBean"> 
 			select id,pxid,pxmc,bmid,xm,xb,sfzh,gzdw,zw,lxfs,qq,photo,bmsj,sfzs,status from dz_pxxx_bm
 			where pxid = #{pxid} and status != '-1'
-	</select>	
+	</select>
+
+	<select id="isExistByPxIdAndNameId" parameterType="Map" resultType="com.cicro.project.dz_pxxx.PxxxBmBean">
+		select id,pxid,pxmc,bmid,xm,xb,sfzh,gzdw,zw,lxfs,qq,photo,bmsj,sfzs,status from dz_pxxx_bm
+		where pxid = #{pxid} and xm=#{name} and sfzh=#{idCard} and status != '-1'
+	</select>
 	
 	<select id="getPxxxBmBean" parameterType="Map" resultType="com.cicro.project.dz_pxxx.PxxxBmBean">
 		select * from dz_pxxx_bm where id = #{id} 
