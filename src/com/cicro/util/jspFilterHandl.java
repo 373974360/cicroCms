@@ -11,9 +11,9 @@ import java.net.URLDecoder;
 import java.util.Enumeration;
 
 public class jspFilterHandl {
-    private static String[] filter_str = {"%df", "%5c", "%27", "%20", "%22", "%27", "%3E", "%3e", "%3C", "%3c", "/*", "\\", "union", "--", "1=1", "and ", "concat", "acustart", "application", "script", "location", "limit ", "alert", "iframe", "set-cookie", "+", "or ", "drop table", "asc\\(", "mid\\(", "char\\(", "net user", "exists", "alter",
+    private static String[] filter_str = {"%df", "%5c", "%27", "%20", "%22", "%27", "%3E", "%3e", "%3C", "%3c", "/*", "\\", "union", "--", "1=1", "and ", "concat", "acustart", "application", "script", "location", "limit ", "alert", "iframe", "set-cookie", "+", "or ", "drop table", "asc\\(", "mid\\(", "char\\(", "net user", "exists ", "alter",
             "+acu+", "onmouseover", "header", "exec ", "insert ", "select ", "delete ", "trancate", "update ", "updatexml", "extractvalue", "href=", "data:text", "declare", "master", "execute", "xp_cmdshell", "netlocalgroup", "count\\(", "restore", "floor", "ExtractValue", "UpdateXml",
-            "injected", "ACUstart", "ACUend", "():;", "acu:Expre", "window.location.href", "document", "parameter: ", "<OBJECT", "javascript", "confirm", "<script>", "</script>", "..", "cat ", "click", "function", "prompt(", "<", ">",";", "'", "“", "”", "‘", "’"};
+            "injected", "ACUstart", "ACUend", "():;", "acu:Expre", "window.location.href", "document", "parameter: ", "<OBJECT", "javascript", "confirm", "<script>", "</script>", "..", "cat ", "click", "function", "prompt(", "<", ">", "“", "”", "‘", "’"};
     private static String no_filter_jsp;
 
     private static String[] sqlFilterStr = {"header", "exec ", "insert ", "select ", "delete ", "trancate", "update ", "drop table"};
@@ -137,7 +137,7 @@ public class jspFilterHandl {
     }
 
     public static void main(String[] args) {
-        String content = "http://www.ylwsw.gov.cn/appeal/list.jsp?model_id=(SELECT%20(CASE%20WHEN%20(3627=3627)))&tm_id=373&tab=3";
+        String content = "http://www.xadaj.gov.cn/servlet/UploadFileIfy?fileext=%2A%2Ejpg%3B%2A%2Ejpeg%3B%2A%2Egif%3B%2A%2Epng%3B%2A%2Ebmp%3B&press%5Fosition=9&site%5Fid=CMSxadaj&sid=J39hZTIfQmuFcR4x5d002Q%3D%3D&is%5Fpress=1&folder=%2Fsys%2Fjs%2Fkindeditor%2Fplugins%2Fimage%2Ffolder";
         String contentold = "http://www.ylwsw.gov.cn/appeal/list.jsp?model_id=(SELECT%20(CASE%20WHEN%20(3627=3627)))&tm_id=373&tab=3";
         try {
             content = URLDecoder.decode(contentold.replaceAll("%20", " ").replaceAll("&lt;", "<"), "utf-8").toLowerCase();

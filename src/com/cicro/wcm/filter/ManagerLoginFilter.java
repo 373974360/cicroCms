@@ -47,7 +47,8 @@ public class ManagerLoginFilter implements javax.servlet.Filter {
             return;
         }
         ServletRequest requestWrapper = null;
-        if(request instanceof HttpServletRequest && requestUri.indexOf("ueditor/jsp/controller.jsp") < 0) {
+        System.out.println(requestUri+"*************");
+        if(request instanceof HttpServletRequest && requestUri.indexOf("ueditor/jsp/controller.jsp") < 0 && requestUri.indexOf("servlet/UploadFileIfy") < 0) {
             requestWrapper = new MyHttpServletRequestWrapper(request);
         }
         if(null == requestWrapper) {
