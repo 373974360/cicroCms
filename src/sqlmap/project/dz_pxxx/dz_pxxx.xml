@@ -9,6 +9,7 @@
 			<if test="pxmc != null">and pxmc like '%${pxmc}%' </if>
 			<if test="pxlx != null">and pxlx like '%${pxlx}%' </if>
 			<if test="pxsj != null">and pxsj like '%${pxsj}%' </if>
+			<if test="pxsjEnd != null">and pxsjEnd like '%${pxsjEnd}%' </if>
 			<if test="bz != null">and bz like '%${bz}%' </if>
 			<if test="keyword != null">and (pxmc like '%${keyword}%' or pxlx like '%${keyword}%' or pxsj like '%${keyword}%' or bz like '%${keyword}%' )</if>
 			and status != '-1'
@@ -18,11 +19,12 @@
 	<select id="getPxxxList_oracle" parameterType="Map" resultType="com.cicro.project.dz_pxxx.PxxxBean">
 		select * from (
 		       select row_.*, rownum rownum_ from (   
-		            select id,pxmc,pxlx,rsxz,pxsj,bz,status from dz_pxxx
+		            select id,pxmc,pxlx,rsxz,pxsj,pxsjEnd,bz,status from dz_pxxx
 		            <where>						
 						<if test="pxmc != null">and pxmc like '%${pxmc}%' </if>
 						<if test="pxlx != null">and pxlx like '%${pxlx}%' </if>
 						<if test="pxsj != null">and pxsj like '%${pxsj}%' </if>
+						<if test="pxsjEnd != null">and pxsjEnd like '%${pxsjEnd}%' </if>
 						<if test="bz != null">and bz like '%${bz}%' </if>
 						<if test="keyword != null">and (pxmc like '%${keyword}%' or pxlx like '%${keyword}%' or pxsj like '%${keyword}%' or bz like '%${keyword}%' )</if>
 						and status != '-1'
@@ -39,11 +41,12 @@
 	</select>
 
 	<select id="getPxxxList" parameterType="Map" resultType="com.cicro.project.dz_pxxx.PxxxBean"> 
-			select id,pxmc,pxlx,rsxz,pxsj,bz,status from dz_pxxx
+			select id,pxmc,pxlx,rsxz,pxsj,pxsjEnd,bz,status from dz_pxxx
 			<where>						
 				<if test="pxmc != null">and pxmc like '%${pxmc}%' </if>
 				<if test="pxlx != null">and pxlx like '%${pxlx}%' </if>
 				<if test="pxsj != null">and pxsj like '%${pxsj}%' </if>
+				<if test="pxsjEnd != null">and pxsjEnd like '%${pxsjEnd}%' </if>
 				<if test="bz != null">and bz like '%${bz}%' </if>
 				<if test="keyword != null">and (pxmc like '%${keyword}%' or pxlx like '%${keyword}%' or pxsj like '%${keyword}%' or bz like '%${keyword}%' )</if>
 				and status != '-1'
@@ -57,13 +60,13 @@
 	</select>
 	
 	<insert id="insertPxxx" parameterType="com.cicro.project.dz_pxxx.PxxxBean">
-	 	insert into dz_pxxx(id,pxmc,pxlx,rsxz,pxsj,bz,status)
-	 	values(#{id},#{pxmc},#{pxlx},#{rsxz},#{pxsj},#{bz},#{status})
+	 	insert into dz_pxxx(id,pxmc,pxlx,rsxz,pxsj,pxsjEnd,bz,status)
+	 	values(#{id},#{pxmc},#{pxlx},#{rsxz},#{pxsj},#{pxsjEnd},#{bz},#{status})
 	</insert>
 	
 	<update id="updatePxxx" parameterType="com.cicro.project.dz_pxxx.PxxxBean">
 	 	update dz_pxxx set pxmc= #{pxmc},pxlx= #{pxlx},rsxz= #{rsxz},
-	 	pxsj= #{pxsj},pxsj= #{pxsj},bz= #{bz},status= #{status}
+	 	pxsj= #{pxsj},pxsjEnd= #{pxsjEnd},bz= #{bz},status= #{status}
 	 	where id = #{id}
 	</update>
 	
