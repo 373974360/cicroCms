@@ -1,0 +1,5 @@
+开始采集链接地址为: http://www.wndrc.gov.cn/plus/list.php?tid=13&TotalResult=69&PageNo=1 的列表
+开始采集链接地址为: http://www.wndrc.gov.cn/plus/list.php?tid=13&TotalResult=69&PageNo=2 的列表
+开始采集链接地址为: http://www.wndrc.gov.cn/plus/list.php?tid=13&TotalResult=69&PageNo=3 的列表
+开始采集链接地址为: http://www.wndrc.gov.cn/plus/list.php?tid=13&TotalResult=69&PageNo=4 的列表
+collOver

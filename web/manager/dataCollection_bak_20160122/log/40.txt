@@ -1,0 +1,5 @@
+开始采集链接地址为: http://www.wntj.gov.cn/index.php?m=content&c=index&a=lists&catid=40 的列表
+【链接为】:http://www.wntj.gov.cn/index.php?m=content&c=index&a=show&catid=19&id=678   【标题】:<a href="http://www.wntj.gov.cn/">渭南统计信息网</a>  的信息入库失败!
+【链接为】:http://www.wntj.gov.cn/index.php?m=content&c=index&a=show&catid=19&id=677   【标题】:<a href="http://www.wntj.gov.cn/">渭南统计信息网</a>  的信息入库失败!
+【链接为】:http://www.wntj.gov.cn/index.php?m=content&c=index&a=show&catid=19&id=676   【标题】:<a href="http://www.wntj.gov.cn/">渭南统计信息网</a>  的信息入库失败!
+collOver

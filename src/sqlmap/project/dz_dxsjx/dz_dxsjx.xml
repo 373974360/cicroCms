@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" 
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="wnzjzf">
+    <sql id="getDxsjxList_sql_conn">
+		where 1=1
+    	<if test="xm != null">
+			and  xm like '%#{xm}%'
+		</if>
+		<if test="sfzhm != null">
+			and  sfzhm like '%#{sfzhm}%'
+		</if>
+		<if test="xxmc != null">
+			and  xxmc like '%#{xxmc}%'
+		</if>
+		<if test="sxzy != null">
+			and  sxzy like '%#{sxzy}%'
+		</if>
+    </sql>
+    
+    <select id="getDxsjxList" parameterType="Map" resultType="com.cicro.project.dz_dxsjx.DxsjxBean">
+        select * from (
+		       select row_.*, rownum rownum_ from ( 
+		       select * from dz_dxsjx 
+		       <include refid="getDxsjxList_sql_conn"/>      
+		            order by ${orderby}
+		 <![CDATA[
+		        ) row_ where rownum <=#{page_size,,jdbcType=INTEGER}+#{start_num,,jdbcType=INTEGER}       
+	    	) where rownum_ >=#{start_num,,jdbcType=INTEGER} + 1
+	    ]]> 
+    </select>
+    
+    
+    <select id="getDxsjxListCount" parameterType="Map" resultType="java.lang.String">
+    	select count(id) from dz_dxsjx 
+		       <include refid="getDxsjxList_sql_conn"/>
+    </select>
+    
+    <select id="getDxsjxBean" parameterType="java.lang.String" resultType="com.cicro.project.dz_dxsjx.DxsjxBean">
+    	select * from dz_dxsjx where id=#{id}
+    </select>
+    
+    <insert id="insertDxsjx" parameterType="com.cicro.project.dz_dxsjx.DxsjxBean">
+    	insert into dz_dxsjx(id,xxmc,sxzy,sznj,xm,xb,mz,jg,zzmm,jkzk,nl,qq,brtc,yzbm,sfzhm,lxdh,xxtxdz,jtlxrjdh,jtxxzz,hjqk,grzjsq,zp,tjb,user_id,add_time,audit_time,status )
+    	values(#{id},#{xxmc},#{sxzy},#{sznj},#{xm},#{xb},#{mz},#{jg},#{zzmm},#{jkzk},#{nl},#{qq},#{brtc},#{yzbm},#{sfzhm},#{lxdh},#{xxtxdz},#{jtlxrjdh},#{jtxxzz},#{hjqk},#{grzjsq},#{zp},#{tjb},#{user_id},#{add_time},#{audit_time},#{status})
+    </insert>    
+    
+    <delete id="deleteDxsjx" parameterType="Map">
+    	delete from dz_dxsjx where id in (${id})
+    </delete>
+</mapper>

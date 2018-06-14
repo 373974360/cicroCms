@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" 
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="subscriber">	
+	
+	<!-- *******************************订阅用户表 **********************************8-->
+	
+	<!-- 查询订阅用户表的字段和条件 -->
+	<sql id="getSubscribeListForDB_sql_item">
+		id,mail_address,sub_time 
+	</sql>
+	
+	<sql id="getSubscribeListForDB_sql_conn">
+		<where>
+			<if test="site_id != '' and site_id != null">
+				 and  site_id=#{site_id} 
+			</if>
+			<if test="i_time_s != null">
+				<![CDATA[ and sub_time >= #{i_time_s}]]>
+			</if>
+			<if test="i_time_e != null">
+				<![CDATA[ and sub_time <= #{i_time_e}]]>
+			</if>
+		</where>
+	</sql>
+	
+	<!-- 添加订阅用户 -->
+	<select id="registerSubEmail" parameterType="Map" resultType="com.cicro.wcm.services.extendfunction.subscribe.SubscribeUserBean">
+		insert into cs_dz_subscribeuser(id,mail_address,sub_time)
+		values(#{id},#{mail_address},#{registerDate})
+	</select>
+	
+	<!-- 订阅用户列表,删除订阅用户 -->
+	<select id="deleteSubscribeUser" parameterType="Map" resultType="com.cicro.wcm.services.extendfunction.subscribe.SubscribeUserBean">
+		delete from cs_dz_subscribeuser where id in(${ids})
+	</select>
+	
+	<!-- 用户订阅列表 -->
+	<select id="getsubscribeUserBeanList" parameterType="Map" resultType="com.cicro.wcm.services.extendfunction.subscribe.SubscribeUserBean">
+	select * from(
+			select row_.*,rownum rownum_ from(
+				select <include refid="getSubscribeListForDB_sql_item" /> from cs_dz_subscribeuser
+				<include refid="getSubscribeListForDB_sql_conn" />
+				order by ${sort_name} ${sort_type}
+	<![CDATA[ 
+	        ) row_ where rownum <=#{page_size,,jdbcType=INTEGER}+#{start_num,,jdbcType=INTEGER}       
+    	) where rownum_ >=#{start_num,,jdbcType=INTEGER} + 1
+    ]]>	
+	</select>
+	<select id="getsubscribeUserBeanList_mysql" parameterType="Map" resultType="com.cicro.wcm.services.extendfunction.subscribe.SubscribeUserBean" >
+		select <include refid="getSubscribeListForDB_sql_item"/> from cs_dz_subscribeuser 
+	 		    <include refid="getSubscribeListForDB_sql_conn"/>	       
+	            order by ${sort_name} ${sort_type} 
+	            limit #{start_num,,jdbcType=INTEGER},#{page_size,,jdbcType=INTEGER}  
+	</select>
+	<select id="getsubscribeUserBeanList_mssql" parameterType="Map" resultType="com.cicro.wcm.services.extendfunction.subscribe.SubscribeUserBean" >
+		select top ${page_size} <include refid="getSubscribeListForDB_sql_item"/>  
+		  from cs_dz_subscribeuser where id not in
+		  (
+			select top ${start_num} id 
+			from cs_dz_subscribeuser 
+			<include refid="getSubscribeListForDB_sql_conn" />
+			order by ${sort_name} ${sort_type} 
+		  )
+		  <include refid="getSubscribeListForDB_sql_conn" /> 
+		  order by ${sort_name} ${sort_type}
+	</select>
+	
+	<!-- 订阅用户列表,修改Mail_Address时获得原来的 Mail_Address-->
+    <select id="getOldMailAddress" parameterType="Map" resultType="com.cicro.wcm.services.extendfunction.subscribe.SubscribeUserBean">
+    	select mail_address from cs_dz_subscribeuser where id = #{id}
+    </select>
+	
+	<!-- 订阅用户列表,修改用户信息  -->
+	<select id="updateSubscribeUserInfo" parameterType="Map" resultType="com.cicro.wcm.services.extendfunction.subscribe.SubscribeUserBean">
+		update cs_dz_subscribeuser set mail_address=#{mail_address} where id=#{id}
+	</select>
+	
+	<!-- 检查邮箱是否已被使用 -->
+	<select id="checkSameEmailAddress" parameterType="Map" resultType="java.lang.String">
+		select count(*) from cs_dz_subscribeuser where mail_address=#{mail_address}
+	</select>
+	
+	<!-- 根据用户ID或得用户对象 -->
+	<select id="getsubscribeBeanListForID" parameterType="Map" resultType="com.cicro.wcm.services.extendfunction.subscribe.SubscribeUserBean">
+		select * from cs_dz_subscribeuser where id in(${selectIDS})
+	</select>
+	
+	<!-- 获得订阅用户总人数  -->
+	<select id="getsubscribeUserBeanListCount"  resultType="java.lang.String">
+		select count(*) from cs_dz_subscribeuser 
+	</select>
+	
+	<!-- 前台退订 -->
+	<select id="unsubscribeByMailAdd" parameterType="Map" resultType="com.cicro.wcm.services.extendfunction.subscribe.SubscribeUserBean">
+		delete from cs_dz_subscribeuser where mail_address=#{mail_address}
+	</select>
+	
+	<!-- 订阅记录列表,点击全部发送获取所有订阅用户对象 -->
+	<select id="getAllsubscribeBeanList" parameterType="Map" resultType="com.cicro.wcm.services.extendfunction.subscribe.SubscribeUserBean">
+    	select <include refid="getSubscribeListForDB_sql_item" /> from cs_dz_subscribeuser
+    </select>
+    
+    <!-- 订阅记录类表,点击选择用户获取所有订阅用户对象  -->
+    <select id="getchoiceuserBeanList" parameterType="Map" resultType="com.cicro.wcm.services.extendfunction.subscribe.SubscribeUserBean">
+    	 select * from cs_dz_subscribeuser order by ${sort_name} ${sort_type}
+    </select>
+    
+	<!-- *******************************订阅记录表 ***********************************-->
+	
+	<!-- 查询订阅记录的字段 -->
+	<sql id="getSubscribeRecordListForDB_sql_item">
+		record_id,send_user,send_time,sendTitle
+	</sql>
+	<!-- 查询订阅记录的条件 -->
+	<sql id="getSubscribeRecordListForDB_sql_conn">
+		<where>
+			<if test="site_id != '' and site_id != null">
+				 and  site_id=#{site_id} 
+			</if>
+			<if test="i_time_s != null">
+				<![CDATA[ and send_time >= #{i_time_s}]]>
+			</if>
+			<if test="i_time_e != null">
+				<![CDATA[ and send_time <= #{i_time_e}]]>
+			</if>
+		</where>
+	</sql>
+	
+	<select id="getSubscribeRecordBeanList" parameterType="Map" resultType="com.cicro.wcm.services.extendfunction.subscribe.subscribeRecordBean">
+		select * from (
+			select row_.*,rownum rownum_ from(
+				select <include refid="getSubscribeRecordListForDB_sql_item" /> from cs_dz_subscribeRecord
+				<include refid="getSubscribeRecordListForDB_sql_conn" />
+				order by ${sort_name} ${sort_type}
+		<![CDATA[ 
+	        ) row_ where rownum <=#{page_size,,jdbcType=INTEGER}+#{start_num,,jdbcType=INTEGER}       
+    	) where rownum_ >=#{start_num,,jdbcType=INTEGER} + 1
+   	 ]]>
+	</select>
+	<select id="getSubscribeRecordBeanList_mysql" parameterType="Map" resultType="com.cicro.wcm.services.extendfunction.subscribe.subscribeRecordBean" >
+		select <include refid="getSubscribeRecordListForDB_sql_item"/> from cs_dz_subscribeRecord 
+	 		    <include refid="getSubscribeRecordListForDB_sql_conn"/>	       
+	            order by ${sort_name} ${sort_type} 
+	            limit #{start_num,,jdbcType=INTEGER},#{page_size,,jdbcType=INTEGER}  
+	</select>
+	<select id="getSubscribeRecordBeanList_mssql" parameterType="Map" resultType="com.cicro.wcm.services.extendfunction.subscribe.subscribeRecordBean" >
+		select top ${page_size} <include refid="getSubscribeRecordListForDB_sql_item"/>  
+		  from cs_dz_subscribeRecord where record_id not in
+		  (
+			select top ${start_num} record_id 
+			from cs_dz_subscribeRecord 
+			<include refid="getSubscribeRecordListForDB_sql_conn" />
+			order by ${sort_name} ${sort_type} 
+		  )
+		  <include refid="getSubscribeRecordListForDB_sql_conn" /> 
+		  order by ${sort_name} ${sort_type}
+	</select>
+	
+	<!-- 订阅记录总数  -->
+	<select id="getSubscribeRecordBeanListCount"  resultType="java.lang.String">
+		select count(*) from cs_dz_subscribeRecord
+	</select>
+    
+    <!-- 添加订阅记录  -->
+    <select id="insertSendRecord" parameterType="Map" resultType="com.cicro.wcm.services.extendfunction.subscribe.subscribeRecordBean">
+    	insert into cs_dz_subscribeRecord(record_id,send_user,send_time,sendTitle)
+		values(#{record_id},#{send_user},#{recordDate},#{sendTitle})
+    </select>
+    
+    <!-- 订阅记录列表,点击预览获取所选发送信息的对象 -->
+    <select id="getPreviewSendContentBean" parameterType="Map" resultType="com.cicro.wcm.bean.cms.info.InfoBean">
+    	select aa.id, aa.info_id, aa.cat_id, aa.title, aa.content_url, aa.app_id, aa.input_dtime,bb.cat_cname 
+    	from(
+			select csd.id , ci.info_id, ci.cat_id, ci.title, ci.author, ci.content_url, ci.site_id ,ci.app_id ,ci.input_dtime 
+			from cs_dz_sendcontentrecord csd , cs_info ci where ci.info_id in ( csd.sinfo_id ) and csd.record_id = #{record_id} 
+		) aa, CS_INFO_CATEGORY bb 
+		where aa.cat_id = bb.cat_id
+    </select>
+    
+    
+    <!-- *******************************发送信息记录表 ***********************************-->
+    
+    <!-- 添加发送信息 -->
+    <select id="insertSendContentRecord" parameterType="Map" resultType="com.cicro.wcm.services.extendfunction.subscribe.SubscribeSendRecordBean">
+    	insert into cs_dz_sendcontentrecord(id,record_id,sinfo_id)values(#{id},#{record_id},#{sinfo_id})
+    </select>
+    
+    <!-- 预览 删除信息 -->
+    <select id="deletePreviewInfobyId" parameterType="Map" resultType="com.cicro.wcm.services.extendfunction.subscribe.SubscribeSendRecordBean">
+    	delete from cs_dz_sendcontentrecord where id in(${id})
+    </select>
+    
+    <!-- 预览  追加信息 -->
+    <select id="insertAddSendInfo" parameterType="Map" resultType="com.cicro.wcm.services.extendfunction.subscribe.SubscribeSendRecordBean">
+    	insert into cs_dz_sendcontentrecord(id,record_id,sinfo_id)values(#{id},#{record_id},#{sinfo_id})
+    </select>
+</mapper>

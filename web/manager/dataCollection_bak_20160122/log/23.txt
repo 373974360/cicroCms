@@ -1,0 +1,7 @@
+开始采集链接地址为: http://www.wnedu.gov.cn/html/gzfw/zcfg/List_1.htm 的列表
+开始采集链接地址为: http://www.wnedu.gov.cn/html/gzfw/zcfg/List_2.htm 的列表
+开始采集链接地址为: http://www.wnedu.gov.cn/html/gzfw/zcfg/List_3.htm 的列表
+开始采集链接地址为: http://www.wnedu.gov.cn/html/gzfw/zcfg/List_4.htm 的列表
+开始采集链接地址为: http://www.wnedu.gov.cn/html/gzfw/zcfg/List_5.htm 的列表
+开始采集链接地址为: http://www.wnedu.gov.cn/html/gzfw/zcfg/List_6.htm 的列表
+collOver

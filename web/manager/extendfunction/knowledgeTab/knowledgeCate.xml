@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" 
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="knowledge">
+    <!-- ******************* 分类 处理开始   *********************** -->
+
+	<!-- 取得所有的信息标签分类信息列表 -->
+	<select id="getKCataList" resultType="com.cicro.wcm.services.extendfunction.knowledgeTab.KnowledgeCateBean">
+		select * from cs_dz_knowledgecate order by sort_id asc
+	</select>
+	
+	<!-- 插入信息标签分类信息 -->
+	<insert id="insertKCategory" parameterType="com.cicro.wcm.services.extendfunction.knowledgeTab.KnowledgeCateBean">
+		insert into cs_dz_knowledgecate(id,kcat_id,kparent_id,kcat_name,kcat_position,kcat_level,kcat_memo,sort_id,app_id,site_id)
+		       values
+		(#{id},#{kcat_id},#{kparent_id},#{kcat_name},#{kcat_position},#{kcat_level},#{kcat_memo},#{sort_id}, #{app_id},#{site_id})
+	</insert>
+	
+	<!-- 修改信息标签分类信息 -->
+	<update id="updateKCategory" parameterType="com.cicro.wcm.services.extendfunction.knowledgeTab.KnowledgeCateBean">
+		update cs_dz_knowledgecate set kcat_level=#{kcat_level},kparent_id=#{kparent_id},kcat_name=#{kcat_name},kcat_position=#{kcat_position},kcat_memo=#{kcat_memo}
+		where id=#{id}
+	</update>
+	
+	<!-- 保存修改排序 -->
+	<update id="saveKCateSort" parameterType="com.cicro.wcm.services.extendfunction.knowledgeTab.KnowledgeCateBean">
+		update cs_dz_knowledgecate set  sort_id = #{sort_id} where id=#{id}
+	</update>
+	
+	<!-- 删除信息标签分类信息 -->
+	<delete id="deleteKCategory" parameterType="Map">
+		delete from cs_dz_knowledgecate  where kcat_id in (${id}) and site_id = #{site_id}
+	</delete>
+<!-- ******************* 分类 处理结束 *********************** -->	
+</mapper>

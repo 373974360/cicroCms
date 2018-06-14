@@ -1,0 +1,20 @@
+create table project_zjzf(
+	id NUMBER(20) not null PRIMARY KEY,
+	name VARCHAR2(250) default '',
+	xb VARCHAR2(20) default '',
+	csny VARCHAR2(250) default '',
+	mz VARCHAR2(250) default '',
+	zzmm VARCHAR2(250) default '',
+	card VARCHAR2(250) default '',
+	gzdw VARCHAR2(250) default '',
+	zhiwu VARCHAR2(250) default '',
+	zhicheng VARCHAR2(250) default '',
+	hkszd VARCHAR2(250) default '',
+	phone VARCHAR2(250) default '',
+	tel VARCHAR2(250) default '',
+	address VARCHAR2(250) default '',
+	txdz VARCHAR2(250) default '',
+	postcode VARCHAR2(20) default '',
+	email VARCHAR2(250) default '',
+	add_time VARCHAR2(20) default ''
+)
