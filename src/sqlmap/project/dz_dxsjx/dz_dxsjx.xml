@@ -18,17 +18,36 @@
 		</if>
     </sql>
     
-    <select id="getDxsjxList" parameterType="Map" resultType="com.cicro.project.dz_dxsjx.DxsjxBean">
-        select * from (
-		       select row_.*, rownum rownum_ from ( 
-		       select * from dz_dxsjx 
-		       <include refid="getDxsjxList_sql_conn"/>      
-		            order by ${orderby}
-		 <![CDATA[
-		        ) row_ where rownum <=#{page_size,,jdbcType=INTEGER}+#{start_num,,jdbcType=INTEGER}       
+	<select id="getDxsjxList" parameterType="Map" resultType="com.cicro.project.dz_dxsjx.DxsjxBean">
+		select * from (
+		select row_.*, rownum rownum_ from (
+		select * from dz_dxsjx
+		<include refid="getDxsjxList_sql_conn"/>
+		order by ${orderby}
+		<![CDATA[
+		        ) row_ where rownum <=#{page_size,,jdbcType=INTEGER}+#{start_num,,jdbcType=INTEGER}
 	    	) where rownum_ >=#{start_num,,jdbcType=INTEGER} + 1
-	    ]]> 
-    </select>
+	    ]]>
+	</select>
+
+	<select id="getDxsjxList_mysql" parameterType="Map" resultType="com.cicro.project.dz_dxsjx.DxsjxBean">
+		select * from dz_dxsjx
+		<include refid="getDxsjxList_sql_conn" />
+		order by ${orderby} limit
+		#{start_num,,jdbcType=INTEGER},#{page_size,,jdbcType=INTEGER}
+	</select>
+
+	<select id="getDxsjxList_mssql" parameterType="Map" resultType="com.cicro.project.dz_dxsjx.DxsjxBean">
+		select top ${page_size} *
+		from dz_dxsjx
+		<include refid="getDxsjxList_sql_conn" />
+		and id not in
+		(select top ${start_num} *
+		from dz_dxsjx
+		<include refid="getDxsjxList_sql_conn" />
+		order by ${orderby} )
+		order by ${orderby}
+	</select>
     
     
     <select id="getDxsjxListCount" parameterType="Map" resultType="java.lang.String">
@@ -42,7 +61,7 @@
     
     <insert id="insertDxsjx" parameterType="com.cicro.project.dz_dxsjx.DxsjxBean">
     	insert into dz_dxsjx(id,xxmc,sxzy,sznj,xm,xb,mz,jg,zzmm,jkzk,nl,qq,brtc,yzbm,sfzhm,lxdh,xxtxdz,jtlxrjdh,jtxxzz,hjqk,grzjsq,zp,tjb,user_id,add_time,audit_time,status )
-    	values(#{id},#{xxmc},#{sxzy},#{sznj},#{xm},#{xb},#{mz},#{jg},#{zzmm},#{jkzk},#{nl},#{qq},#{brtc},#{yzbm},#{sfzhm},#{lxdh},#{xxtxdz},#{jtlxrjdh},#{jtxxzz},#{hjqk},#{grzjsq},#{zp},#{tjb},#{user_id},#{add_time},#{audit_time},#{status})
+    	values(#{id},#{xxmc},#{sxzy},#{sznj},#{xm},#{xb},#{mz},#{jg},#{zzmm},#{jkzk},#{nl},#{qq},#{brtc},#{yzbm},#{sfzhm},#{lxdh},#{xxtxdz},#{jtlxrjdh},#{jtxxzz},#{hjqk},#{grzjsq},#{zp},#{tjb},#{user_id,,jdbcType=VARCHAR},#{add_time,,jdbcType=VARCHAR},#{audit_time,,jdbcType=VARCHAR},#{status})
     </insert>    
     
     <delete id="deleteDxsjx" parameterType="Map">
