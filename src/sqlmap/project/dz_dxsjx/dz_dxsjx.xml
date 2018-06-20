@@ -62,7 +62,20 @@
     <insert id="insertDxsjx" parameterType="com.cicro.project.dz_dxsjx.DxsjxBean">
     	insert into dz_dxsjx(id,xxmc,sxzy,sznj,xm,xb,mz,jg,zzmm,jkzk,nl,qq,brtc,yzbm,sfzhm,lxdh,xxtxdz,jtlxrjdh,jtxxzz,hjqk,grzjsq,zp,tjb,user_id,add_time,audit_time,status )
     	values(#{id},#{xxmc},#{sxzy},#{sznj},#{xm},#{xb},#{mz},#{jg},#{zzmm},#{jkzk},#{nl},#{qq},#{brtc},#{yzbm},#{sfzhm},#{lxdh},#{xxtxdz},#{jtlxrjdh},#{jtxxzz},#{hjqk},#{grzjsq},#{zp},#{tjb},#{user_id,,jdbcType=VARCHAR},#{add_time,,jdbcType=VARCHAR},#{audit_time,,jdbcType=VARCHAR},#{status})
-    </insert>    
+    </insert>
+
+	<update id="updateDxsjx" parameterType="Map">
+		update dz_dxsjx set audit_time = #{audit_time}
+		<if test="status != null">
+			,status = #{status}
+		</if>
+		<if test="user_id != null">
+			,user_id = #{user_id}
+		</if>
+		where id in (${id})
+	</update>
+
+	updateDxsjx
     
     <delete id="deleteDxsjx" parameterType="Map">
     	delete from dz_dxsjx where id in (${id})

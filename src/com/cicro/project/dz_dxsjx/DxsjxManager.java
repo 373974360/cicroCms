@@ -38,4 +38,8 @@ public class DxsjxManager {
     public static boolean deleteDxsjx(Map<String, String> m) {
         return DxsjxDAO.deleteDxsjx(m);
     }
+
+    public static boolean updateDxsjx(Map<String, String> m) {
+        return DxsjxDAO.updateDxsjx(m);
+    }
 }

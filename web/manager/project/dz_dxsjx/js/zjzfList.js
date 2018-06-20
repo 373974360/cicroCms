@@ -22,7 +22,7 @@ function initTable(){
 	var colsMap = new Map();	
 	var colsList = new List();	
 	
-	colsList.add(setTitleClos("name","姓名","200px","","",""));//英文名，显示名，宽，高，样式名，点击事件　
+	colsList.add(setTitleClos("xm","姓名","200px","","",""));//英文名，显示名，宽，高，样式名，点击事件　
 	colsList.add(setTitleClos("xb","性别","50px","","",""));
 	colsList.add(setTitleClos("mz","民族","100px","","",""));
 	colsList.add(setTitleClos("jg","籍贯","100px","","",""));
@@ -59,9 +59,24 @@ function showList(){
 		{
 			$(this).html('<a href="javascript:openUpdatePicViewPage('+beanList.get(i-1).id+')">'+beanList.get(i-1).xm+'</a>');
 		}
-	});		
+	});
 
-	Init_InfoTable(table.table_name);
+    table.getCol("status").each(function(i){
+        if(i>0)
+        {
+        	if(beanList.get(i-1).status == 0){
+                $(this).html("未审核");
+			}
+            if(beanList.get(i-1).status == 1){
+                $(this).html("审核通过");
+            }
+            if(beanList.get(i-1).status == 2){
+                $(this).html("审核未通过");
+            }
+        }
+    });
+
+    Init_InfoTable(table.table_name);
 }
 
 function showTurnPage(){	

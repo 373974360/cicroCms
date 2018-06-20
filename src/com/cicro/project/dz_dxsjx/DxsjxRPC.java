@@ -1,5 +1,10 @@
 package com.cicro.project.dz_dxsjx;
 
+import com.cicro.util.DateUtil;
+import com.cicro.wcm.bean.logs.SettingLogsBean;
+import com.cicro.wcm.services.Log.LogManager;
+
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
 
@@ -24,6 +29,15 @@ public class DxsjxRPC {
 
     public static DxsjxBean getDxsjxBean(int id) {
         return DxsjxManager.getDxsjxBean(id);
+    }
+
+    public static boolean updateDxsjx(Map<String, String> m, HttpServletRequest request) {
+        SettingLogsBean stl = LogManager.getSettingLogsByRequest(request);
+        if(stl != null){
+            m.put("user_id",stl.getUser_id()+"");
+        }
+        m.put("audit_time", DateUtil.getCurrentDateTime());
+        return DxsjxManager.updateDxsjx(m);
     }
 
     public static boolean insertDxsjx(DxsjxBean dxsjx) {

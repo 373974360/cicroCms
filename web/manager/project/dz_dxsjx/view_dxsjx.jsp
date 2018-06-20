@@ -25,7 +25,7 @@ $(document).ready(function () {
 				
 	if(id != null && id.trim() != "")
 	{
-		defaultBean = ZJZFRPC.getGongMinBean(id);
+		defaultBean = DxsjxRPC.getDxsjxBean(id);
 
 		if(defaultBean)
 		{
@@ -177,12 +177,6 @@ $(document).ready(function () {
 		<tr>
 			<th >推荐表（电子版）：</th>
 			<td id="tjb">
-
-			</td>
-		</tr>
-		<tr>
-			<th >状态：</th>
-			<td id="status">
 
 			</td>
 		</tr>

@@ -35,4 +35,8 @@ public class DxsjxDAO {
     public static boolean deleteDxsjx(Map<String, String> m) {
         return DBManager.delete("deleteDxsjx", m);
     }
+
+    public static boolean updateDxsjx(Map<String, String> m) {
+        return DBManager.update("updateDxsjx", m);
+    }
 }
