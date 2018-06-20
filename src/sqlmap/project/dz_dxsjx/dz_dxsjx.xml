@@ -48,8 +48,7 @@
 		order by ${orderby} )
 		order by ${orderby}
 	</select>
-    
-    
+
     <select id="getDxsjxListCount" parameterType="Map" resultType="java.lang.String">
     	select count(id) from dz_dxsjx 
 		       <include refid="getDxsjxList_sql_conn"/>
@@ -75,8 +74,6 @@
 		where id in (${id})
 	</update>
 
-	updateDxsjx
-    
     <delete id="deleteDxsjx" parameterType="Map">
     	delete from dz_dxsjx where id in (${id})
     </delete>
