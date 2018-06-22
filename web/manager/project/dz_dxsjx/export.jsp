@@ -4,8 +4,8 @@
 <%@ page import="java.util.HashMap" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Map" %>
-<%@ page import="com.cicro.project.dz_dxsjx.DxsjxManager" %>
-<%@ page import="com.cicro.project.dz_dxsjx.DxsjxBean" %>
+<%@ page import="com.cicro.project.dz_dxsjx.DxsjxInfoManager" %>
+<%@ page import="com.cicro.project.dz_dxsjx.DxsjxInfoBean" %>
 <%
 	String[] path = getFileUrl();
 	String[] head = getExcelHeadName();	
@@ -13,11 +13,11 @@
 	m.put("start_num", "0");	
 	m.put("page_size", "10000");
 	m.put("orderby", "id desc");
-	List<DxsjxBean> l = DxsjxManager.getDxsjxList(m);
+	List<DxsjxInfoBean> l = DxsjxInfoManager.getDxsjxList(m);
 	String[][] data = new String[l.size()][head.length];
 	int i=0;
 	try{					
-		for(DxsjxBean dxsjxBean : l)
+		for(DxsjxInfoBean dxsjxBean : l)
 		{
 			data[i][0] = dxsjxBean.getXm();
 			data[i][1] = dxsjxBean.getXb();

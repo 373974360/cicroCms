@@ -7,8 +7,9 @@ package com.cicro.project.dz_dxsjx;
  * @Version: 1.0
  * @Created in idea by autoCode
  */
-public class DxsjxBean {
+public class DxsjxInfoBean {
     private int id = 0;
+    private int category_id;
     private String xxmc;    //学校名称
     private String sxzy;    //所学专业
     private String sznj;    //所在年级
@@ -31,6 +32,14 @@ public class DxsjxBean {
     private String grzjsq;    //个人自荐申请
     private String zp;    //照片
     private String tjb;    //电子版推荐表
+    private String jtcy1_cw;
+    private String jtcy1_xm;
+    private String jtcy1_gzdw;
+    private String jtcy1_lxdh;
+    private String jtcy2_cw;
+    private String jtcy2_xm;
+    private String jtcy2_gzdw;
+    private String jtcy2_lxdh;
     private String add_time;
     private String audit_time;
     private int status;
@@ -42,6 +51,14 @@ public class DxsjxBean {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getCategory_id() {
+        return category_id;
+    }
+
+    public void setCategory_id(int category_id) {
+        this.category_id = category_id;
     }
 
     public String getXxmc() {
@@ -250,6 +267,70 @@ public class DxsjxBean {
 
     public void setUser_id(String user_id) {
         this.user_id = user_id;
+    }
+
+    public String getJtcy1_cw() {
+        return jtcy1_cw;
+    }
+
+    public void setJtcy1_cw(String jtcy1_cw) {
+        this.jtcy1_cw = jtcy1_cw;
+    }
+
+    public String getJtcy1_xm() {
+        return jtcy1_xm;
+    }
+
+    public void setJtcy1_xm(String jtcy1_xm) {
+        this.jtcy1_xm = jtcy1_xm;
+    }
+
+    public String getJtcy1_gzdw() {
+        return jtcy1_gzdw;
+    }
+
+    public void setJtcy1_gzdw(String jtcy1_gzdw) {
+        this.jtcy1_gzdw = jtcy1_gzdw;
+    }
+
+    public String getJtcy1_lxdh() {
+        return jtcy1_lxdh;
+    }
+
+    public void setJtcy1_lxdh(String jtcy1_lxdh) {
+        this.jtcy1_lxdh = jtcy1_lxdh;
+    }
+
+    public String getJtcy2_cw() {
+        return jtcy2_cw;
+    }
+
+    public void setJtcy2_cw(String jtcy2_cw) {
+        this.jtcy2_cw = jtcy2_cw;
+    }
+
+    public String getJtcy2_xm() {
+        return jtcy2_xm;
+    }
+
+    public void setJtcy2_xm(String jtcy2_xm) {
+        this.jtcy2_xm = jtcy2_xm;
+    }
+
+    public String getJtcy2_gzdw() {
+        return jtcy2_gzdw;
+    }
+
+    public void setJtcy2_gzdw(String jtcy2_gzdw) {
+        this.jtcy2_gzdw = jtcy2_gzdw;
+    }
+
+    public String getJtcy2_lxdh() {
+        return jtcy2_lxdh;
+    }
+
+    public void setJtcy2_lxdh(String jtcy2_lxdh) {
+        this.jtcy2_lxdh = jtcy2_lxdh;
     }
 }
 

@@ -1,5 +1,6 @@
-create table dz_dxsjx(
+create table dz_dxsjx_info(
 	id int(20) not null PRIMARY KEY,
+	category_id int(20) not null,
 	xxmc VARCHAR(250) default '',
 	sxzy VARCHAR(20) default '',
 	sznj VARCHAR(250) default '',
@@ -20,10 +21,25 @@ create table dz_dxsjx(
 	jtxxzz VARCHAR(250) default '',
     hjqk VARCHAR(500) default '',
     grzjsq VARCHAR(250) default '',
-    zp VARCHAR(20) default '',
+    zp VARCHAR(50) default '',
     tjb VARCHAR(250) default '',
+    jtcy1_cw VARCHAR(20) default '',
+    jtcy1_xm VARCHAR(20) default '',
+    jtcy1_gzdw VARCHAR(100) default '',
+    jtcy1_lxdh VARCHAR(20) default '',
+    jtcy2_cw VARCHAR(20) default '',
+    jtcy2_xm VARCHAR(20) default '',
+    jtcy2_gzdw VARCHAR(100) default '',
+    jtcy2_lxdh VARCHAR(20) default '',
     user_id VARCHAR(20) default '',
     add_time VARCHAR(20) default '',
     audit_time VARCHAR(250) default '',
+    status int(2) default 0
+)
+
+create table dz_dxsjx_category(
+	id int(20) not null PRIMARY KEY,
+	name VARCHAR(250) default '',
+    add_time VARCHAR(20) default '',
     status int(2) default 0
 )

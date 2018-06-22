@@ -12,11 +12,11 @@ import java.util.Map;
  * @Version: 1.0
  * @Created in idea by autoCode
  */
-public class DxsjxDAO {
-    public DxsjxDAO() {
+public class DxsjxInfoDAO {
+    public DxsjxInfoDAO() {
     }
 
-    public static List<DxsjxBean> getDxsjxList(Map<String, String> m) {
+    public static List<DxsjxInfoBean> getDxsjxList(Map<String, String> m) {
         return DBManager.queryFList("getDxsjxList", m);
     }
 
@@ -24,11 +24,11 @@ public class DxsjxDAO {
         return DBManager.getString("getDxsjxListCount", m);
     }
 
-    public static DxsjxBean getDxsjxBean(int id) {
-        return (DxsjxBean)DBManager.queryFObj("getDxsjxBean", id);
+    public static DxsjxInfoBean getDxsjxBean(int id) {
+        return (DxsjxInfoBean)DBManager.queryFObj("getDxsjxBean", id);
     }
 
-    public static boolean insertDxsjx(DxsjxBean dxsjx) {
+    public static boolean insertDxsjx(DxsjxInfoBean dxsjx) {
         return DBManager.insert("insertDxsjx", dxsjx);
     }
 

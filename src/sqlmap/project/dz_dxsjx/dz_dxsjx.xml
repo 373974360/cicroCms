@@ -4,6 +4,9 @@
 <mapper namespace="wnzjzf">
     <sql id="getDxsjxList_sql_conn">
 		where 1=1
+		<if test="category_id != null">
+			and  category_id = #{category_id}
+		</if>
     	<if test="xm != null">
 			and  xm like '%#{xm}%'
 		</if>
@@ -16,12 +19,15 @@
 		<if test="sxzy != null">
 			and  sxzy like '%#{sxzy}%'
 		</if>
+		<if test="status != null">
+			and  status = #{status}
+		</if>
     </sql>
     
-	<select id="getDxsjxList" parameterType="Map" resultType="com.cicro.project.dz_dxsjx.DxsjxBean">
+	<select id="getDxsjxList" parameterType="Map" resultType="com.cicro.project.dz_dxsjx.DxsjxInfoBean">
 		select * from (
 		select row_.*, rownum rownum_ from (
-		select * from dz_dxsjx
+		select * from dz_dxsjx_info
 		<include refid="getDxsjxList_sql_conn"/>
 		order by ${orderby}
 		<![CDATA[
@@ -30,41 +36,41 @@
 	    ]]>
 	</select>
 
-	<select id="getDxsjxList_mysql" parameterType="Map" resultType="com.cicro.project.dz_dxsjx.DxsjxBean">
-		select * from dz_dxsjx
+	<select id="getDxsjxList_mysql" parameterType="Map" resultType="com.cicro.project.dz_dxsjx.DxsjxInfoBean">
+		select * from dz_dxsjx_info
 		<include refid="getDxsjxList_sql_conn" />
 		order by ${orderby} limit
 		#{start_num,,jdbcType=INTEGER},#{page_size,,jdbcType=INTEGER}
 	</select>
 
-	<select id="getDxsjxList_mssql" parameterType="Map" resultType="com.cicro.project.dz_dxsjx.DxsjxBean">
+	<select id="getDxsjxList_mssql" parameterType="Map" resultType="com.cicro.project.dz_dxsjx.DxsjxInfoBean">
 		select top ${page_size} *
-		from dz_dxsjx
+		from dz_dxsjx_info
 		<include refid="getDxsjxList_sql_conn" />
 		and id not in
 		(select top ${start_num} *
-		from dz_dxsjx
+		from dz_dxsjx_info
 		<include refid="getDxsjxList_sql_conn" />
 		order by ${orderby} )
 		order by ${orderby}
 	</select>
 
     <select id="getDxsjxListCount" parameterType="Map" resultType="java.lang.String">
-    	select count(id) from dz_dxsjx 
+    	select count(id) from dz_dxsjx_info 
 		       <include refid="getDxsjxList_sql_conn"/>
     </select>
     
-    <select id="getDxsjxBean" parameterType="java.lang.String" resultType="com.cicro.project.dz_dxsjx.DxsjxBean">
-    	select * from dz_dxsjx where id=#{id}
+    <select id="getDxsjxBean" parameterType="java.lang.String" resultType="com.cicro.project.dz_dxsjx.DxsjxInfoBean">
+    	select * from dz_dxsjx_info where id=#{id}
     </select>
     
-    <insert id="insertDxsjx" parameterType="com.cicro.project.dz_dxsjx.DxsjxBean">
-    	insert into dz_dxsjx(id,xxmc,sxzy,sznj,xm,xb,mz,jg,zzmm,jkzk,nl,qq,brtc,yzbm,sfzhm,lxdh,xxtxdz,jtlxrjdh,jtxxzz,hjqk,grzjsq,zp,tjb,user_id,add_time,audit_time,status )
-    	values(#{id},#{xxmc},#{sxzy},#{sznj},#{xm},#{xb},#{mz},#{jg},#{zzmm},#{jkzk},#{nl},#{qq},#{brtc},#{yzbm},#{sfzhm},#{lxdh},#{xxtxdz},#{jtlxrjdh},#{jtxxzz},#{hjqk},#{grzjsq},#{zp},#{tjb},#{user_id,,jdbcType=VARCHAR},#{add_time,,jdbcType=VARCHAR},#{audit_time,,jdbcType=VARCHAR},#{status})
+    <insert id="insertDxsjx" parameterType="com.cicro.project.dz_dxsjx.DxsjxInfoBean">
+    	insert into dz_dxsjx_info(id,category_id,xxmc,sxzy,sznj,xm,xb,mz,jg,zzmm,jkzk,nl,qq,brtc,yzbm,sfzhm,lxdh,xxtxdz,jtlxrjdh,jtxxzz,hjqk,grzjsq,zp,tjb,jtcy1_cw,jtcy1_xm,jtcy1_gzdw,jtcy1_lxdh,jtcy2_cw,jtcy2_xm,jtcy2_gzdw,jtcy2_lxdh,user_id,add_time,audit_time,status )
+    	values(#{id},#{category_id},#{xxmc},#{sxzy},#{sznj},#{xm},#{xb},#{mz},#{jg},#{zzmm},#{jkzk},#{nl},#{qq},#{brtc},#{yzbm},#{sfzhm},#{lxdh},#{xxtxdz},#{jtlxrjdh},#{jtxxzz},#{hjqk},#{grzjsq},#{zp},#{tjb},#{jtcy1_cw},#{jtcy1_xm},#{jtcy1_gzdw},#{jtcy1_lxdh},#{jtcy2_cw},#{jtcy2_xm},#{jtcy2_gzdw},#{jtcy2_lxdh},#{user_id,,jdbcType=VARCHAR},#{add_time,,jdbcType=VARCHAR},#{audit_time,,jdbcType=VARCHAR},#{status})
     </insert>
 
 	<update id="updateDxsjx" parameterType="Map">
-		update dz_dxsjx set audit_time = #{audit_time}
+		update dz_dxsjx_info set audit_time = #{audit_time}
 		<if test="status != null">
 			,status = #{status}
 		</if>
@@ -75,6 +81,6 @@
 	</update>
 
     <delete id="deleteDxsjx" parameterType="Map">
-    	delete from dz_dxsjx where id in (${id})
+    	delete from dz_dxsjx_info where id in (${id})
     </delete>
 </mapper>

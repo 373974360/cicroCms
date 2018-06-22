@@ -15,20 +15,20 @@ import java.util.Map;
  * @Version: 1.0
  * @Created in idea by autoCode
  */
-public class DxsjxRPC {
-    public DxsjxRPC() {
+public class DxsjxInfoRPC {
+    public DxsjxInfoRPC() {
     }
 
-    public static List<DxsjxBean> getDxsjxList(Map<String, String> m) {
-        return DxsjxManager.getDxsjxList(m);
+    public static List<DxsjxInfoBean> getDxsjxList(Map<String, String> m) {
+        return DxsjxInfoManager.getDxsjxList(m);
     }
 
     public static String getDxsjxListCount(Map<String, String> m) {
-        return DxsjxManager.getDxsjxListCount(m);
+        return DxsjxInfoManager.getDxsjxListCount(m);
     }
 
-    public static DxsjxBean getDxsjxBean(int id) {
-        return DxsjxManager.getDxsjxBean(id);
+    public static DxsjxInfoBean getDxsjxBean(int id) {
+        return DxsjxInfoManager.getDxsjxBean(id);
     }
 
     public static boolean updateDxsjx(Map<String, String> m, HttpServletRequest request) {
@@ -37,14 +37,14 @@ public class DxsjxRPC {
             m.put("user_id",stl.getUser_id()+"");
         }
         m.put("audit_time", DateUtil.getCurrentDateTime());
-        return DxsjxManager.updateDxsjx(m);
+        return DxsjxInfoManager.updateDxsjx(m);
     }
 
-    public static boolean insertDxsjx(DxsjxBean dxsjx) {
-        return DxsjxManager.insertDxsjx(dxsjx);
+    public static boolean insertDxsjx(DxsjxInfoBean dxsjx) {
+        return DxsjxInfoManager.insertDxsjx(dxsjx);
     }
 
     public static boolean deleteDxsjx(Map<String, String> m) {
-        return DxsjxManager.deleteDxsjx(m);
+        return DxsjxInfoManager.deleteDxsjx(m);
     }
 }
