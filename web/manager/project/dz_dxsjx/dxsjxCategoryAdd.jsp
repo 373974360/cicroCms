@@ -47,6 +47,20 @@
                 <input type="hidden" name="id" id="id" value="0"/>
             </td>
         </tr>
+        <tr>
+            <th><span class="f_red">*</span>总选中人数：</th>
+            <td class="width250">
+                <input id="total" name="total" type="text" class="width200" value=""
+                       onblur="checkInputValue('total',false,80,'总选中人数','')"/>
+            </td>
+        </tr>
+        <tr>
+            <th><span class="f_red">*</span>每次摇号选中人数：</th>
+            <td class="width250">
+                <input id="size" name="size" type="text" class="width200" value=""
+                       onblur="checkInputValue('total',false,80,'每次摇号选中人数','')"/>
+            </td>
+        </tr>
         </tbody>
     </table>
     <span class="blank12"></span>

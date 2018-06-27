@@ -43,10 +43,22 @@
 
 	String auth_code = request.getParameter("auth_code");
 	System.out.println("******************************************************"+codeSession + "------------------------------------------------" +auth_code);
-	if(!auth_code.equals(codeSession))
+	if(codeSession != null && !auth_code.equals(codeSession))
 	{
 		out.println("<script>");
 		out.println("top.alert('验证码不正确')");
+		out.println("top.changeCreateImage()");
+		out.println("</script>");
+		return;
+	}
+
+	String phoneCode = (String)request.getSession().getAttribute("dxsjxPhoneVerifyCode");
+	String auth_code2 = request.getParameter("phone_vali");
+	System.out.println(phoneCode+":"+auth_code2);
+	if(!auth_code2.equals(phoneCode))
+	{
+		out.println("<script>");
+		out.println("top.alert('手机验证码不正确')");
 		out.println("top.changeCreateImage()");
 		out.println("</script>");
 		return;
@@ -71,6 +83,27 @@
 		}
 	}else{
 		dxsjxBean.setCategory_id(Integer.parseInt(category_id));
+		Map map = new HashMap();
+		map.put("sfzhm",sfzhm);
+		map.put("category_id",category_id);
+		String dxsjxListCount = DxsjxInfoManager.getDxsjxListCount(map);
+		if(dxsjxListCount != null && !"".equals(dxsjxListCount) && !"0".equals(dxsjxListCount)){
+			out.println("<script>");
+			out.println("top.alert('该身份证号码已经报名，请勿重复报名')");
+			out.println("top.changeCreateImage()");
+			out.println("</script>");
+			return;
+		}
+		map.remove("sfzhm");
+		map.put("lxdh",lxdh);
+		dxsjxListCount = DxsjxInfoManager.getDxsjxListCount(map);
+		if(dxsjxListCount != null && !"".equals(dxsjxListCount) && !"0".equals(dxsjxListCount)){
+			out.println("<script>");
+			out.println("top.alert('该手机号码已经报名，请勿重复报名')");
+			out.println("top.changeCreateImage()");
+			out.println("</script>");
+			return;
+		}
 	}
 	dxsjxBean.setXxmc(xxmc);
 	dxsjxBean.setSxzy(sxzy);

@@ -35,6 +35,27 @@
 
         });
 
+        function updateDxsjxInfo2(status)
+        {
+            if (id != null && id.trim() != "") {
+                m.put("id",id);
+                m.put("status",status);
+                if(DxsjxInfoRPC.updateDxsjx(m))
+                {
+                    top.msgAlert("大学生见习报名信息"+WCMLang.Add_success);
+                    top.getCurrentFrameObj(topnum).reloadPicViewList();
+                    top.tab_colseOnclick(top.curTabIndex)
+                }
+                else
+                {
+                    top.msgWargin("大学生见习报名信息"+WCMLang.Add_fail);
+                    top.getCurrentFrameObj(topnum).reloadPicViewList();
+                    top.tab_colseOnclick(top.curTabIndex)
+                }
+            }
+
+        }
+
         //-->
     </SCRIPT>
 </head>
@@ -125,6 +146,8 @@
     <table class="table_option" border="0" cellpadding="0" cellspacing="0">
         <tr>
             <td align="left" valign="middle" style="text-indent:100px;">
+                <input id="btn3" name="btn3" type="button" onclick="updateDxsjxInfo2(1)" value="审核通过" />
+                <input id="btn3" name="btn3" type="button" onclick="updateDxsjxInfo2(2)" value="审核不通过" />
                 <input id="userAddCancel" name="btn1" type="button" onclick="top.tab_colseOnclick(top.curTabIndex);"
                        value="关闭"/>
             </td>

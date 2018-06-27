@@ -137,11 +137,6 @@ function openUpdatePicViewPage(id)
 	
 }
 
-function openUpdatePicUpdatePage(id)
-{
-	top.addTab(true,"/manager/project/picview/update_pic.jsp?id="+id+"&topnum="+top.curTabIndex+"&audit_type="+audit_type+"&publish_type="+publish_type,"投稿信息");
-}
-
 //删除投稿
 function deletePicView()
 {

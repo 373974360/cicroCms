@@ -11,13 +11,16 @@
 			and  xm like '%#{xm}%'
 		</if>
 		<if test="sfzhm != null">
-			and  sfzhm like '%#{sfzhm}%'
+			and  sfzhm = #{sfzhm}
 		</if>
 		<if test="xxmc != null">
 			and  xxmc like '%#{xxmc}%'
 		</if>
 		<if test="sxzy != null">
 			and  sxzy like '%#{sxzy}%'
+		</if>
+		<if test="lxdh != null">
+			and  lxdh = #{lxdh}
 		</if>
 		<if test="status != null">
 			and  status = #{status}

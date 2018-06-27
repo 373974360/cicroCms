@@ -1,10 +1,5 @@
 package com.cicro.project.dz_dxsjx;
 
-import com.cicro.util.DateUtil;
-import com.cicro.wcm.bean.logs.SettingLogsBean;
-import com.cicro.wcm.services.Log.LogManager;
-
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
 
@@ -31,8 +26,8 @@ public class DxsjxCategoryRPC {
         return DxsjxCategoryManager.getDxsjxCategoryBean(id);
     }
 
-    public static boolean updateDxsjxCategory(Map<String, String> m) {
-        return DxsjxCategoryManager.updateDxsjxCategory(m);
+    public static boolean updateDxsjxCategory(DxsjxCategoryBean dxsjx) {
+        return DxsjxCategoryManager.updateDxsjxCategory(dxsjx);
     }
 
     public static boolean updateDxsjxCategoryStatus(Map<String, String> m) {

@@ -63,6 +63,7 @@ function exportZJZF()
 		<td align="left" valign="middle">
 			<input id="btn3" name="btn3" type="button" onclick="publicSelectCheckbox(table,'id','updateDxsjxInfo(1)')" value="审核通过" />
 			<input id="btn3" name="btn3" type="button" onclick="publicSelectCheckbox(table,'id','updateDxsjxInfo(2)')" value="审核不通过" />
+			<input id="btn3" name="btn3" type="button" onclick="deleteRecord(table,'id','deletePicView()')" value="删除" />
 		</td>
 	</tr>
    </table>	

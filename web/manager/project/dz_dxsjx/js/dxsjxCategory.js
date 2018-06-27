@@ -19,6 +19,8 @@ function initTable() {
     var colsList = new List();
     colsList.add(setTitleClos("id", "ID", "50px", "", "", ""));
     colsList.add(setTitleClos("name", "分类名称", "", "", "", ""));//英文名，显示名，宽，高，样式名，点击事件　
+    colsList.add(setTitleClos("total", "总选中人数", "", "", "", ""));//英文名，显示名，宽，高，样式名，点击事件　
+    colsList.add(setTitleClos("size", "每次摇号选中人数", "", "", "", ""));//英文名，显示名，宽，高，样式名，点击事件　
     colsList.add(setTitleClos("add_time", "添加时间", "260px", "", "", ""));
     colsList.add(setTitleClos("status", "状态", "", "", "", ""));
     colsList.add(setTitleClos("oprate", "操作", "", "", "", ""));
@@ -54,6 +56,9 @@ function showList() {
                 $(this).html("<span style='color:red'>未开始摇号</span>");
             }
             if(beanList.get(i-1).status == 1){
+                $(this).html("<span style='color:green'>正在摇号</span>");
+            }
+            if(beanList.get(i-1).status == 2){
                 $(this).html("<span style='color:green'>已完成摇号</span>");
             }
         }
@@ -62,7 +67,7 @@ function showList() {
     table.getCol("oprate").each(function (i) {
         $(this).css({"text-align": "left"});
         if (i > 0) {
-            if(beanList.get(i-1).status == 0){
+            if(beanList.get(i-1).status != 2){
                 $(this).html("<a href='/manager/project/dz_dxsjx/randomDxsjxInfo.jsp?id="+ beanList.get(i-1).id +"' target='_blank'>开始摇号</a>");
             }
         }
@@ -78,12 +83,6 @@ function showTurnPage() {
     tp.show("turn", "");
     tp.onPageChange = showList;
 }
-
-//打开查看窗口
-function openViewCategoryDataPage(source_id) {	//OpenModalWindow
-    top.OpenModalWindow("来源查看", "/manager/system/assist/source/source_view.jsp?source_id=" + source_id, 380, 215);
-}
-
 //打开添加窗口
 function openAddCategoryPage() {
     top.OpenModalWindow("维护来源", "/manager/project/dz_dxsjx/dxsjxCategoryAdd.jsp", 380, 215);
@@ -126,10 +125,8 @@ function updateCategoryData() {
     if (!standard_checkInputInfo("Category_table")) {
         return;
     }
-    var m = new Map();
-    m.put("id",bean.id);
-    m.put("name",bean.name);
-    if (DxsjxCategoryRPC.updateDxsjxCategory(m)) {
+    bean.id = defaultBean.id;
+    if (DxsjxCategoryRPC.updateDxsjxCategory(bean)) {
         top.msgAlert("分类" + WCMLang.Add_success);
         top.CloseModalWindow();
         top.getCurrentFrameObj().reloadCategoryDataList();

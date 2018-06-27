@@ -53,12 +53,12 @@
     </select>
     
     <insert id="insertDxsjxCategory" parameterType="com.cicro.project.dz_dxsjx.DxsjxCategoryBean">
-    	insert into dz_dxsjx_category(id,name,add_time,status )
-    	values(#{id},#{name},#{add_time,,jdbcType=VARCHAR},#{status})
+    	insert into dz_dxsjx_category(id,name,add_time,total,size,status )
+    	values(#{id},#{name},#{add_time,,jdbcType=VARCHAR},#{total,,jdbcType=INTEGER},#{size,,jdbcType=INTEGER},#{status})
     </insert>
 
-	<update id="updateDxsjxCategory" parameterType="Map">
-		update dz_dxsjx_category set name = #{name} where id = #{id}
+	<update id="updateDxsjxCategory" parameterType="com.cicro.project.dz_dxsjx.DxsjxCategoryBean">
+		update dz_dxsjx_category set name = #{name},total = #{total},size = #{size} where id = #{id}
 	</update>
 
 	<update id="updateDxsjxCategoryStatus" parameterType="Map">

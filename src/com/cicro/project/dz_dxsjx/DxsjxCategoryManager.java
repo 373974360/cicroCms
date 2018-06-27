@@ -39,8 +39,8 @@ public class DxsjxCategoryManager {
         return DxsjxCategoryDAO.deleteDxsjxCategory(m);
     }
 
-    public static boolean updateDxsjxCategory(Map<String, String> m) {
-        return DxsjxCategoryDAO.updateDxsjxCategory(m);
+    public static boolean updateDxsjxCategory(DxsjxCategoryBean dxsjx) {
+        return DxsjxCategoryDAO.updateDxsjxCategory(dxsjx);
     }
 
     public static boolean updateDxsjxCategoryStatus(Map<String, String> m) {

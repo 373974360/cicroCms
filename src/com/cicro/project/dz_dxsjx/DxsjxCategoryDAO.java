@@ -36,11 +36,13 @@ public class DxsjxCategoryDAO {
         return DBManager.delete("deleteDxsjxCategory", m);
     }
 
-    public static boolean updateDxsjxCategory(Map<String, String> m) {
-        return DBManager.update("updateDxsjxCategory", m);
+    public static boolean updateDxsjxCategory(DxsjxCategoryBean dxsjx) {
+        return DBManager.update("updateDxsjxCategory", dxsjx);
     }
 
     public static boolean updateDxsjxCategoryStatus(Map<String, String> m) {
         return DBManager.update("updateDxsjxCategoryStatus", m);
     }
+
+
 }

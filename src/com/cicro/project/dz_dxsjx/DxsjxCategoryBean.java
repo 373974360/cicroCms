@@ -11,6 +11,8 @@ public class DxsjxCategoryBean {
     private int id = 0;
     private String name;
     private String add_time;
+    private int total;
+    private int size;
     private int status;
 
     public int getId() {
@@ -35,6 +37,22 @@ public class DxsjxCategoryBean {
 
     public void setAdd_time(String add_time) {
         this.add_time = add_time;
+    }
+
+    public int getTotal() {
+        return total;
+    }
+
+    public void setTotal(int total) {
+        this.total = total;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
     }
 
     public int getStatus() {
