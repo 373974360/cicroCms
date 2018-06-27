@@ -73,7 +73,7 @@
                 <th>性别：</th>
                 <td id="xb"  colspan="2"></td>
                 <td colspan="2" rowspan="6">
-                    <img src="" id="zp" width="180"/>
+                    <img src="" id="zp" width="180" height="220"/>
                 </td>
             </tr>
             <tr>

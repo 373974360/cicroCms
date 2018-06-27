@@ -77,7 +77,7 @@
             text-align: left;
         }
         .result-div{
-            width: 209px;
+            width: 205px;
             float: left;
             display: inline;
             text-align: center;
@@ -101,8 +101,9 @@
         var every = 0;
         var id = request.getParameter("id");
         var data = new Array();
-        var isLast = false;
+        var resultTotal = 0;
         var categoryBean;
+        var times = 1;
         $(document).ready(function () {
             categoryBean = jsonrpc.DxsjxCategoryRPC.getDxsjxCategoryBean(id);
             total = categoryBean.total;
@@ -128,19 +129,17 @@
                         yxzrs += 1;
                     }
                 }
-                if(yxzrs + size > total){
-                    size = total - yxzrs;
-                    isLast = true;
-                }
             }
         });
-
-
 
         //点击按钮
         function start() {
             if (data.length <= 0) {
                 alert("没有可以被选中的数据！");
+                return;
+            }
+            if (data.length <= (total - resultTotal)) {
+                alert("备选人数不足，无法摇号");
                 return;
             }
             if (total == null || total == "" || total == "0" || total == undefined) {
@@ -151,12 +150,14 @@
                 alert("请先设置当次抽中人数");
                 return;
             }
+            $("#button").text("正在第"+times+"次摇号").attr("disabled","disabled");
+            times += 1;
             every = 0;
             clearInterval(time);
             clearInterval(time2);
             time = setInterval('trunNum()', 10);
             time2 = setInterval('endTrun()', 1000);
-            $("#button").text("正在摇号").attr("disabled","disabled");
+
         }
 
         function trunNum() {
@@ -168,18 +169,20 @@
         //停止转动数字
         function endTrun() {
             every += 1;
+            resultTotal += 1;
             showResult(data[key]);
             data.splice(key, 1);
             if(every >= size){
                 clearInterval(time);
                 clearInterval(time2);
-                $("#button").text("摇号结束");
-                if(isLast){
+                if(resultTotal >= total){
+                    $("#button").text("摇号结束").attr("disabled","disabled");
                     var map = new Map();
                     map.put("id",id);
                     map.put("status",2);
                     jsonrpc.DxsjxCategoryRPC.updateDxsjxCategoryStatus(map);
                 }else{
+                    $("#button").text("第"+times+"次开始摇号").removeAttr("disabled");
                     if(categoryBean.status == 0){
                         var map = new Map();
                         map.put("id",id);
@@ -206,7 +209,7 @@
 <div class="container">
     <div id="title">摇号公示</div>
     <div class="result-box"></div>
-    <button class="start" id="button" onClick="start()">开始摇号</button>
+    <button class="start" id="button" onClick="start()">第1次开始摇号</button>
     <div id="result">
 
     </div>
