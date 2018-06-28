@@ -83,28 +83,31 @@
 		}
 	}else{
 		dxsjxBean.setCategory_id(Integer.parseInt(category_id));
-		Map map = new HashMap();
-		map.put("sfzhm",sfzhm);
-		map.put("category_id",category_id);
-		String dxsjxListCount = DxsjxInfoManager.getDxsjxListCount(map);
-		if(dxsjxListCount != null && !"".equals(dxsjxListCount) && !"0".equals(dxsjxListCount)){
-			out.println("<script>");
-			out.println("top.alert('该身份证号码已经报名，请勿重复报名')");
-			out.println("top.changeCreateImage()");
-			out.println("</script>");
-			return;
-		}
-		map.remove("sfzhm");
-		map.put("lxdh",lxdh);
-		dxsjxListCount = DxsjxInfoManager.getDxsjxListCount(map);
-		if(dxsjxListCount != null && !"".equals(dxsjxListCount) && !"0".equals(dxsjxListCount)){
-			out.println("<script>");
-			out.println("top.alert('该手机号码已经报名，请勿重复报名')");
-			out.println("top.changeCreateImage()");
-			out.println("</script>");
-			return;
-		}
 	}
+	Map map = new HashMap();
+	map.put("sfzhm",sfzhm);
+	map.put("category_id",dxsjxBean.getCategory_id());
+	String dxsjxListCount = DxsjxInfoManager.getDxsjxListCount(map);
+	System.out.println(dxsjxListCount + "****" +dxsjxBean.getCategory_id() + "***" +sfzhm);
+	if(dxsjxListCount != null && !"".equals(dxsjxListCount) && !"0".equals(dxsjxListCount)){
+		out.println("<script>");
+		out.println("top.alert('该身份证号码已经报名，请勿重复报名')");
+		out.println("top.changeCreateImage()");
+		out.println("</script>");
+		return;
+	}
+	map.remove("sfzhm");
+	map.put("lxdh",lxdh);
+	dxsjxListCount = DxsjxInfoManager.getDxsjxListCount(map);
+	System.out.println(dxsjxListCount + "****" +dxsjxBean.getCategory_id() + "***" +lxdh);
+	if(dxsjxListCount != null && !"".equals(dxsjxListCount) && !"0".equals(dxsjxListCount)){
+		out.println("<script>");
+		out.println("top.alert('该手机号码已经报名，请勿重复报名')");
+		out.println("top.changeCreateImage()");
+		out.println("</script>");
+		return;
+	}
+
 	dxsjxBean.setXxmc(xxmc);
 	dxsjxBean.setSxzy(sxzy);
 	dxsjxBean.setSznj(sznj);
