@@ -7,6 +7,7 @@
 <%@ page import="java.util.HashMap" %>
 <%@ page import="com.cicro.wcm.bean.cms.info.ArticleBean" %>
 <%@ page import="com.cicro.wcm.services.cms.info.article.ArticleManager" %>
+<%@ page import="java.text.SimpleDateFormat" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
     String action_type = request.getParameter("action_type");
@@ -28,6 +29,8 @@
     }
 %>
 <%!
+
+    SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     public String getSzbList(HttpServletRequest request)
     {
@@ -54,7 +57,7 @@
             json+="{\"total\":\""+total+"\",\"pageCount\":\""+pageCount+"\",\"currPage\":\""+currentPageInt+"\",\"list\":[";
             for(SzbBean szb : szbList)
             {
-                json += "{\"id\":\""+szb.getId()+"\",\"create_time\":\""+szb.getCreateTime()+"\",\"title\":\""+szb.getTitle()+"\",\"json_data\":"+szb.getJsonData()+",\"pub_date\":\""+szb.getPubDate()+"\"},";
+                json += "{\"id\":\""+szb.getId()+"\",\"create_time\":\""+df.format(szb.getCreateTime())+"\",\"title\":\""+szb.getTitle()+"\",\"json_data\":"+szb.getJsonData()+",\"pub_date\":\""+df.format(szb.getPubDate())+"\"},";
             }
             json = json.substring(0,json.length()-1);
             json += "]}";
@@ -87,7 +90,7 @@
             szbBean = szbData.getSzb(params);
         }
         if (szbBean != null) {
-            json+="{\"id\":\""+szbBean.getId()+"\",\"show\":\""+show+"\",\"create_time\":\""+szbBean.getCreateTime()+"\",\"title\":\""+szbBean.getTitle()+"\",\"json_data\":"+szbBean.getJsonData()+",\"pub_date\":\""+szbBean.getPubDate()+"\"}";
+            json+="{\"id\":\""+szbBean.getId()+"\",\"show\":\""+show+"\",\"create_time\":\""+df.format(szbBean.getCreateTime())+"\",\"title\":\""+szbBean.getTitle()+"\",\"json_data\":"+szbBean.getJsonData()+",\"pub_date\":\""+df.format(szbBean.getPubDate())+"\"}";
         }
         return "["+json+"]";
     }
@@ -123,7 +126,7 @@
             //查询文章信息
             String a = request.getParameter("a");
             ArticleBean article = ArticleManager.getArticle(a, null);
-            json+="{\"szb\":[{\"id\":\""+szbBean.getId()+"\",\"show\":\""+show+"\",\"create_time\":\""+szbBean.getCreateTime()+"\",\"title\":\""+szbBean.getTitle()+"\",\"json_data\":"+szbBean.getJsonData()+",\"pub_date\":\""+szbBean.getPubDate()+"\"}],\"article\":[{\"title\":\""+article.getTitle()+"\",\"releaseddtime\":\""+article.getReleased_dtime()+"\",\"source\":\""+article.getSource()+"\",\"content\":\""+replaceStr(article.getInfo_content())+"\"}]}";
+            json+="{\"szb\":[{\"id\":\""+szbBean.getId()+"\",\"show\":\""+show+"\",\"create_time\":\""+df.format(szbBean.getCreateTime())+"\",\"title\":\""+szbBean.getTitle()+"\",\"json_data\":"+szbBean.getJsonData()+",\"pub_date\":\""+df.format(szbBean.getPubDate())+"\"}],\"article\":[{\"title\":\""+article.getTitle()+"\",\"releaseddtime\":\""+article.getReleased_dtime()+"\",\"source\":\""+article.getSource()+"\",\"content\":\""+replaceStr(article.getInfo_content())+"\"}]}";
         }
         return "["+json+"]";
     }
