@@ -117,5 +117,7 @@
         <mapper resource="sqlmap/sendinfo/record.xml"/>
         <mapper resource="sqlmap/sendinfo/sendinfo.xml"/>
 		<mapper resource="sqlmap/project/searchkeys/searchkeys.xml"/>
+		<mapper resource="sqlmap/project/zjzf/zjzf.xml"/>
+		<mapper resource="sqlmap/project/dz_szb/dz_szb.xml"/>
 	</mappers>
 </configuration>
