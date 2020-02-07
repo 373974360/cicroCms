@@ -219,6 +219,15 @@ public class jspFilterHandl {
                             return true;
                         }
                     }
+                    if ("cat_id".equals(arr) || "model_id".equals(arr) || "sq_id".equals(arr) || "tm_id".equals(arr) || "t_id".equals(arr) || "info_id".equals(arr) || "pur_id".equals(arr) || "cur_page".equals(arr)) {
+                        try {
+                            if (value != null && !"".equals(value)) {
+                                Integer.parseInt(value);
+                            }
+                        } catch (Exception var6) {
+                            return true;
+                        }
+                    }
                     if (isTureKey(value, filter_str)) {
                         return true;  //包含要过滤的关键字
                     }
